@@ -1,0 +1,176 @@
+/*.row [class^="col-md-2"] {
+				padding-bottom: 10px;
+				padding-top: 10px;
+				background-color: #000000;
+				border: 1px solid #000000;
+				color: #fff;
+				padding: 50px 20px;
+			}*/
+
+ul.nav.nav-pills.nav-stacked {
+	padding-top: 25px;
+}
+
+.wd1,
+.sele1 {
+	width: 40%;
+	float: left;
+	margin-right: 10px;
+}
+
+.btn1 {
+	color: #ffffff;
+	background-color: #337ab7;
+	border-color: #ccc;
+}
+
+.bs-example {
+	margin-top: 10px;
+	padding: 15px;
+	background: #fff;
+}
+
+table th {
+	color: #000000;
+}
+
+a.btn {
+	background: #337ab7;
+	color: #fff;
+}
+
+a.btn:hover {
+	background: #CCCCCC;
+	color: #000;
+}
+
+.rp-hed-ul {
+	overflow: hidden;
+	height: 110px;
+	padding: 20px 0;
+	box-shadow: -10px 10px 24px #d6d6d6;
+	background: #FFFFFF;
+	margin-top: 10px;
+}
+
+.rp-hed ul li {
+	float: left;
+	width: 33%;
+	height: 100%;
+	/*	border-left: 1px dashed #0dd874;*/
+	text-align: center;
+	/*background-color: #e8ffe8;*/
+}
+
+.sidebar {
+	position: fixed;
+	left: 0;
+	height: 100%;
+	background-color: #000000;
+	border: 1px solid #000000;
+	color: #fff;
+	padding: 50px 20px;
+	float: left;
+	z-index: 100;
+}
+
+#nav a {
+	color: #f3f5f7
+}
+
+#nav_a:hover {
+	background-color: #000000;
+}
+
+.active_a {
+	background-color: #337ab7;
+}
+
+
+/*#nav a:hover {
+	color: #000000
+}*/
+
+@media (min-width: 992px) bootstrap.css:1969 .col-md-2 {
+	width: 12.666667%;
+}
+
+
+/*面包屑样式*/
+
+.breadcrumb {
+	padding: 10px 15px;
+	margin-bottom: 10px;
+	list-style: none;
+	background-color: #ffffff;
+	border-radius: 4px;
+	font-size: 20px;
+}
+
+
+/*.table{
+	text-align: center;
+}
+
+.table th {
+	text-align: center;
+}*
+
+/*.table thead {
+	background: #cbdcea;
+}*/
+
+.table img {
+	width: 50px;
+}
+
+
+/*分页*/
+
+#PrevPage,
+#NextPage {
+	float: left;
+	width: 50%;
+	text-align: center;
+	border: 0;
+	line-height: 46px;
+	font-size: 16px;
+	color: #008000;
+	cursor: pointer;
+	font-weight: 700;
+}
+
+#Paging input:disabled,
+#PrevPage input:disabled {
+	color: #cacaca;
+}
+
+#PrevPage1,
+#NextPage1 {
+	float: left;
+	width: 50%;
+	text-align: center;
+	border: 0;
+	line-height: 46px;
+	font-size: 16px;
+	color: #008000;
+	cursor: pointer;
+	font-weight: 700;
+}
+
+#Paging1 input:disabled,
+#PrevPage1 input:disabled {
+	color: #cacaca;
+}
+
+#Paging1 {
+	display: none;
+}
+
+#pagination,#pagination1 {
+	
+	position: relative;
+	top: -30px;
+	left: 48%;
+	width: 50px;
+}

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>退货/退款进行</title>
+		<link rel="stylesheet" type="text/css" href="../css/PCreseTcss" />
+		<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../css/lib/sweetalert.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+		<script src="../js/lib/jQuery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery-time.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery-jtemplates.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/sweetalert/sweetalert-dev.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/proceed_moneyback.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.T_type1,.T_type2,.T_type3,.T_type4,.T_type5,.T_type6 {
+				display: none;
+				height: 50px;
+				background: #FFFFFF;
+				line-height: 50px;
+			}
+			
+			.T_type li {
+				float: left;
+				font-size: 18px;
+				padding: 0 20px;
+				list-style: none;
+			}
+			
+			.T_active {
+				color: #337ab7;
+			}
+			
+			.table-bordered {
+				text-align: center;
+			}
+			
+			.table-bordered th {
+				text-align: center;
+			}
+			
+			.table-bordered thead {
+				background: #cbdcea;
+			}
+			
+			.table-bordered img {
+				width: 50px;
+			}
+			
+			.T_1,
+			.T_2,
+			.T_3,
+			.T_4 {
+				padding: 1% 5%;
+				display: none;
+			}
+			
+			.btn_yes {
+				background: #337ab7;
+				color: #FFFFFF;
+			}
+			
+			.T_1 span,
+			.T_2 span {
+				margin-left: 5%;
+				font-size: 18px;
+			}
+			
+			/*.btn-lg {
+				margin-left: 5%;
+			}*/
+			
+			b {
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+
+			<div class="col-sm-3 col-md-2 sidebar">
+				<h3>后台管理系统</h3>
+				<ul class="nav nav-pills  nav-stacked" id="nav">
+					<li role="presentation">
+						<a href="order.html">订单管理</a>
+					</li>
+					<!--<li role="presentation" >
+						<a href="logistics.html">物流管理</a>
+					</li>-->
+					<li role="presentation">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							商品管理 <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a id="nav_a" href="commodity.html">出售中的商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="send_commodity.html">发布商品</a>
+							</li>
+						</ul>
+					</li>
+					<li role="presentation" class="active">
+						<a href="moneyback.html">退货管理</a>
+					</li>
+					<li role="presentation">
+						<a href="javascript:void(0)" class="logout">退出系统</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main-console box">
+					<!--面包屑导航-->
+					<ol class="breadcrumb">
+						<li class="active">退货/退款进行</li>
+						<input type="hidden" id="mobile" value="" />
+					</ol>
+					<div class="row">
+						<!--表格数据-->
+						<div class="col-md-12 T_type" >
+							<!--退款申请1-->
+							<ul class="T_type1">
+								<li class="T_active">1. 卖家申请退款退款 </li>
+								<li>></li>
+								<li class="T_active">2. 卖家处理退款申请</li>
+								<li>></li>
+								<li>3. 退款中</li>
+								<li>></li>
+								<li>4. 退款完成</li>
+							</ul>
+							<!--退款申请2-->
+							<ul class="T_type2">
+								<li class="T_active">1. 卖家申请退款退款 </li>
+								<li>></li>
+								<li class="T_active">2. 卖家处理退款申请</li>
+								<li>></li>
+								<li class="T_active">3. 退款中</li>
+								<li>></li>
+								<li>4. 退款完成</li>
+							</ul>
+							<!--退款申请3-->
+							<ul class="T_type3">
+								<li class="T_active">1. 卖家申请退款退款 </li>
+								<li>></li>
+								<li class="T_active">2. 卖家处理退款申请</li>
+								<li>></li>
+								<li class="T_active">3. 退款中</li>
+								<li>></li>
+								<li class="T_active">4. 退款完成</li>
+							</ul>
+							
+							
+							<!--退货申请1-->
+							<ul class="T_type4">
+								<li class="T_active">1. 卖家申请退货退款 </li>
+								<li>></li>
+								<li class="T_active">2. 卖家处理退货申请</li>
+								<li>></li>
+								<li>3. 买家退货给卖家</li>
+								<li>></li>
+								<li>4. 卖家确认收货，退货完成</li>
+							</ul>
+							<!--退货申请2-->
+							<ul class="T_type5">
+								<li class="T_active">1. 卖家申请退货退款 </li>
+								<li>></li>
+								<li class="T_active">2. 卖家处理退货申请</li>
+								<li>></li>
+								<li class="T_active">3. 买家退货给卖家</li>
+								<li>></li>
+								<li>4. 卖家确认收货，退货完成</li>
+							</ul>
+							<!--退货申请3-->
+							<ul class="T_type6">
+								<li class="T_active">1. 卖家申请退货退款 </li>
+								<li>></li>
+								<li class="T_active">2. 卖家处理退货申请</li>
+								<li>></li>
+								<li class="T_active">3. 买家退货给卖家</li>
+								<li>></li>
+								<li class="T_active">4. 卖家确认收货，退货完成</li>
+							</ul>
+							
+							
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>宝贝</th>
+										<th>买家</th>
+										<th>订单编号</th>
+										<th>退款金额</th>
+										<th>快递</th>
+										<th>退款编号</th>
+										<th>原因</th>
+										<th>要求</th>
+										<th>货物状态</th>
+										<th>备注</th>
+									</tr>
+								</thead>
+								<tbody id="tbody1">
+
+								</tbody>
+							</table>
+							
+                            <!--退款申请-->
+							<div class="T_1">
+								<h3>请处理退款申请</span> <span>倒计时：<b class="count_down"></b></span></h3>
+									<div class="text" style="padding: 0px;">
+										<div class="text" style="padding: 0px;">
+											<p>如果你同意退款，请直接点击同意退款</p>
+											<p>如有其他异议请联系买家处理</p>
+											<p>如果你不及时处理，退款将于<i></i>之后自动退还给买家。</p>
+											<button class="btn  btn-primary btn-lg btn_agree">同意退款</button>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<button class="btn  btn-lg btn_contact">联系买家</button>
+										</div>
+										<hr />
+										<p>买家提出退款申请：<span class="timer"></p>
+								</div>
+							</div>
+							<!--退款中-->
+							<div class="T_2">
+								<h3>退款处理中...</span></h3>
+								<div class="text" style="padding: 0px;">
+									<div class="text" style="padding: 0px;">
+										<button class="btn  btn-lg btn_contact">联系买家</button>
+									</div>
+									<hr />
+									<p>卖家同意退款申请：<span class="timerx"></p>
+								    <p>买家提出退款申请：<span class="timer"></p>
+								</div>
+							</div>
+							<!--退款完成-->
+							<div class="T_3">
+								<h3>退款已完成</span>&nbsp;&nbsp;&nbsp;<span class="timer"></h3>
+								<div class="text" style="padding: 0px;">
+									<div class="text" style="padding: 0px;">
+										<button class="btn  btn-lg btn_contact">联系买家</button>
+									</div>
+									<hr />
+									<p>卖家同意退款申请：<span class="timerx"></p>
+									<p>买家提出退款申请：<span class="timer"></p>
+								</div>
+							</div>
+							<!--退货申请-->
+							<div class="T_4">
+								<h3>请处理退货申请   <span>倒计时：<b class="count_down"></b></span></h3>
+								<div class="text" style="padding: 0px;">
+									<p>如果同意申请，请发送正确的退货地址给买家 </p>
+									<p>如果拒绝申请，请联系买家协商</p>
+									<p>如果逾期未响应申请，试做同意买家的申请，系统自动将您的默认退货地址发送给买家</p>
+									<button class="btn  btn-primary btn-lg" data-toggle="modal" data-target="#myModal">同意退货，发送退货地址</button>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<button class="btn btn_no btn-lg">拒绝退货申请</button>
+									<!-- Button trigger modal -->
+								</div>
+								<hr />
+								<p>买家提出退款申请：<span class="timer"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--表格模版-->
+		<textarea id="template" style="display:none">
+			{#template MAIN}
+			        <tr>
+						<td>
+							<!--<img src="{$T.img}" />-->
+							<p style='color: #1E88E5;'>{$T.title}</p>
+							<p>{$T.label}</p>
+						</td>
+						<td>{$T.name}</td>
+						<td>{$T.sn}</td>
+						<td>{to_Fixed($T.money)}</td>
+						<td>{xs_null($T.express)}</td>
+						<td>{xs_null($T.rn)}</td>
+						<td>{reason($T.reason)}</td>
+						<td>{require($T.type)}</td>
+						<td>{state($T.state)}</td>
+						<td>{xs_null($T.remark)}</td>
+					</tr>
+			{#/template MAIN}
+		</textarea>
+         <!--模态框-->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+															<h4 class="modal-title" id="myModalLabel">请填写退货地址</h4>
+													</div>
+													<div class="modal-body">
+														<div class="row">
+															<div class="col-md-6">
+																<div class="col-sm-6">
+																	<label for="default">默认地址：</label>
+																</div>
+																<div class="col-sm-6">
+																	<!--<textarea name="" id="" cols="30" rows="10"></textarea>-->
+																	<input type="checkbox" checked name="site" id="default" value=" ">
+																</div>
+															</div>
+														</div>
+
+														<div class="row">
+															<div class="col-md-6">
+																<div class="col-sm-6">
+																	<label for="write">其他地址：</label>
+																</div>
+																<div class="col-sm-6">
+																	<textarea name="" id="" cols="50" rows="3"></textarea>
+																	<!--<input type="checkbox" name="site" id="write" value="">-->
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+														<button type="button" class="btn btn-primary btn_yes">确定</button>
+													</div>
+											</div>
+									</div>
+							</div>
+
+	</body>
+
+</html>

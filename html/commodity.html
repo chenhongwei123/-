@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>出售中的商品</title>
+		<link rel="stylesheet" type="text/css" href="../css/PCreset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+		<script src="../js/lib/jQuery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+
+			<div class="col-sm-3 col-md-2 sidebar">
+				<h3>后台管理系统</h3>
+				<ul class="nav nav-pills  nav-stacked" id="nav">
+					<li role="presentation">
+						<a href="order.html">订单管理</a>
+					</li>
+					<!--<li role="presentation">
+						<a href="logistics.html">物流管理</a>
+					</li>-->
+					<li role="presentation" class="active">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							商品管理 <span class="caret "></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a id="nav_a" href="commodity.html" class="active_a">出售中的商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="send_commodity.html">发布商品</a>
+							</li>
+						</ul>
+					</li>
+					<li role="presentation">
+						<a href="moneyback.html">退货管理</a>
+					</li>
+					<li role="presentation">
+						<a href="javascript:void(0)" class="logout">退出系统</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main-console box">
+					<!--面包屑导航-->
+					<ol class="breadcrumb">
+						<li>商品管理</li>
+						<li class="active">出售中的商品</li>
+					</ol>
+					<table class="table" style="background-color: #FFFFFF;">
+
+						<thead>
+							<tr>
+								<th></th>
+								<th>宝贝名称</th>
+								<th>价格</th>
+								<th>库存</th>
+								<th>总销量</th>
+								<th>发布时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td><input type="checkbox" id="checkall"></td>
+								<td><span>全选</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete">删除</button></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="fruit" value="1"></td>
+								<td>
+									<img src="../img/raw_1497493914.png" />
+									<span style='color: #1E88E5;'>美国原装进口蛋白</span>
+								</td>
+								<td>589.2</td>
+								<td>454</td>
+								<td>692件</td>
+								<td>2017-06-19 21：09</td>
+								<td>编辑</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="fruit" value="2"></td>
+								<td>
+									<img src="../img/raw_1497493914.png" />
+									<span style='color: #1E88E5;'>美国原装进口蛋白</span>
+								</td>
+								<td>589.2</td>
+								<td>454</td>
+								<td>692件</td>
+								<td>2017-06-19 21：09</td>
+								<td>编辑</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="fruit" value="3"></td>
+								<td>
+									<img src="../img/raw_1497493914.png" />
+									<span style='color: #1E88E5;'>美国原装进口蛋白</span>
+								</td>
+								<td>589.2</td>
+								<td>454</td>
+								<td>692件</td>
+								<td>2017-06-19 21：09</td>
+								<td>编辑</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript">
+	var checkAll = document.getElementById('checkall');
+	var inputs = document.getElementsByTagName('input');
+	console.log(inputs.length)
+	checkAll.onclick = function() {
+		for(var i = 0; i < inputs.length; i++) {
+			inputs[i].checked = this.checked;
+
+		}
+	};
+
+	$(function() {
+		// 设置属性值
+		$("#delete").click(function() {
+			var fruit = "";
+
+			$("input:checkbox[name='fruit']:checked").each(function() {
+				fruit += $(this).val() + ",";
+			});
+
+			//      alert("已选择水果："+fruit);
+			console.log(fruit.substring(0, fruit.length - 1))
+			//			console.log(fruit.length)
+		});
+	})
+</script>

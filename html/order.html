@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订单管理</title>
+		<link rel="stylesheet" type="text/css" href="../css/PCreset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+		<script src="../js/lib/jQuery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery-time.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery-jtemplates.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/order.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+
+			<div class="col-sm-3 col-md-2 sidebar">
+				<h3>后台管理系统</h3>
+				<ul class="nav nav-pills  nav-stacked" id="nav">
+					<li role="presentation" class="active">
+						<a href="order.html">订单管理</a>
+					</li>
+					
+					<li role="presentation">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							商品管理 <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a id="nav_a" href="commodity.html">出售中的商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="send_commodity.html">发布商品</a>
+							</li>
+						</ul>
+					</li>
+					<li role="presentation">
+						<a href="moneyback.html">退货管理</a>
+					</li>
+					<li role="presentation">
+						<a href="javascript:void(0)" class="logout">退出系统</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main-console box">
+					<!--面包屑导航-->
+					<ol class="breadcrumb">
+						<li class="active">订单管理</li>
+					</ol>
+
+					<div class="row">
+						<!--店铺信息-->
+						<div class="col-md-12 rp-hed">
+							<ul class="rp-hed-ul">
+								<li style="border-right: 1px solid #ccc;">
+									<h6 class="merchantName" style="font-size:18px; font-weight: 900;">养你一辈子保健品</h6>
+									<p>订单总数：<em id="collect" style="color:#337ab7;"></em></p>
+								</li>
+								<li style="border-right: 1px solid #ccc;">
+									<h5>今日订单总额</h5>
+									<span style="color: red;">￥<em id="turnover"></em></span>
+								</li>
+								<li>
+									<h5>今日订单</h5>
+									<span style="color: #008000;" id="orderCount"></span>
+								</li>
+							</ul>
+						</div>
+						<!--搜索-->
+						<div class="col-md-6">
+
+							<select class="form-control input-sm sele1">
+								<option>点击下拉显示需要搜索的类型</option>
+								<option>待付款</option>
+								<option>待发货</option>
+								<option>已完成</option>
+								<option>退货/退款</option>
+							</select>
+						</div>	
+						<div class="col-md-6">	
+							<input type="text" class="form-control wd1" name="wd" placeholder="输入手机号或订单号进行搜索">
+							
+							<button class="btn btn-default searchsub btn1" id="searchOrder" onclick="return false">搜索</button>
+						</div>
+
+						<!--表格数据-->
+						<div class="col-md-12">
+							<div class="bs-example" data-example-id="condensed-table">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>订单编号</th>
+											<th>手机号</th>
+											<th>订单号</th>
+											<th>收件人</th>
+											<th>下单时间</th>
+											<th>订单状态</th>
+											<th>状态操作</th>
+											<th>更多操作</th>
+										</tr>
+									</thead>
+									<tbody id="tbody1">
+
+									</tbody>
+								</table>
+								<!--分页1-->
+								<div id="Paging">
+									<input type="button" id="PrevPage" value="上一页" />
+									<input type="button" id="NextPage" value="下一页">
+									<input type="text" value="0" style="display: none;" id="dishpageval" />
+									<div id="pagination">
+										<span>第</span>
+										<b id="change">1</b>
+										<span>页</span>
+									</div>
+								</div>
+                                <!--分页2-->
+								<div id="Paging1">
+									<input type="button" id="PrevPage1" value="上一页" />
+									<input type="button" id="NextPage1" value="下一页">
+									<input type="text" value="0" style="display: none;" id="dishpageval1" />
+									<div id="pagination1" style="text-align: center;">
+										<span>第</span>
+										<b id="change1">1</b>
+										<span>页</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!--表格模版-->
+		<textarea id="template" style="display:none">
+			{#template MAIN}
+			    {#foreach $T as entry}
+				    <tr>
+				    	<!--0.数据id-->
+				    	<input type="hidden" id="id" value="{$T.entry.id}" />
+				    	<!--1.收货地址-->
+				    	<input type="hidden" id="address" value="{$T.entry.address}" />   
+				    	<!--2.优惠额度-->
+				      	<input type="hidden" id="amount" value="{$T.entry.amount}" />
+				      	<!--3.商品id-->
+				      	<input type="hidden" id="bid" value="{$T.entry.bid}" />
+				      	<!--4.快递单号-->
+				      	<input type="hidden" id="code" value="{$T.entry.code}" />
+				      	<!--5.下单时间戳-->
+				      	<input type="hidden" id="createTime" value="{formatDate($T.entry.createTime)}" />
+				      	<!--6.发货时间戳-->
+				      	<input type="hidden" id="deliveryTime" value="{$T.entry.deliveryTime}" />
+				      	<!--7.快递公司名-->
+				      	<input type="hidden" id="express" value="{$T.entry.express}" />
+				      	<!--8.运费-->
+				      	<input type="hidden" id="fare" value="{$T.entry.fare}" />
+				      	<!--9.供货商名-->
+				      	<input type="hidden" id="feature" value="{$T.entry.feature}" />
+				      	<!--10.供货商图标-->
+				      	<input type="hidden" id="icon" value="{$T.entry.icon}" />
+				      	<!--11.商品图标-->
+				      	<input type="hidden" id="img" value="{$T.entry.img}" />
+				      	<!--12.商品规格-->
+				      	<input type="hidden" id="label" value="{$T.entry.label}" />
+				      	<!--13.收货人电话-->
+				      	<input type="hidden" id="mobile" value="{$T.entry.mobile}" />
+				      	<!--14.真实单价-->
+				      	<input type="hidden" id="money" value="{$T.entry.money}" />
+				      	<!--15.收货人-->
+				      	<input type="hidden" id="name" value="{$T.entry.name}" />
+				      	<!--16.销售数量-->
+				      	<input type="hidden" id="num" value="{$T.entry.num}" />
+				      	<!--17.备注-->
+				      	<input type="hidden" id="remark" value="{$T.entry.remark}" />
+				      	<!--18.收货人性别-->
+				      	<input type="hidden" id="sex" value="{$T.entry.sex}" />
+				      	<!--19.供应商id-->
+				      	<input type="hidden" id="sid" value="{$T.entry.sid}" />
+				      	<!--20.订单号-->
+				        <input type="hidden" id="sn" value="{$T.entry.sn}" />
+				        <!--21.状态-->
+				        <input type="hidden" id="state" value="{state($T.entry.state)}" />
+                        <!--22.商品标题-->
+                        <input type="hidden" id="title" value="{$T.entry.title}" />
+                        <!--23.下单用户id-->
+                        <input type="hidden" id="uid" value="{$T.entry.uid}" />
+                        
+                        <td>{$T.entry.id}</td>
+						<td>{$T.entry.mobile}</td>
+						<td>{$T.entry.sn}</td>
+						<td>{$T.entry.name}</td>
+						<td>{formatDate($T.entry.createTime)}</td>
+						<td>{state($T.entry.state)}</td>
+						
+						   {#if $T.entry.state==1}<td><a href="send-out.html" class="btn">发货</a></td> 
+							   {#elseif $T.entry.state==3} <td></td>  
+							   {#else} <td></td>  
+						   {#/if}  
+						   
+						<td>
+							<a onclick="click_Storage(event)" href="datails.html" class="btn">详情</a>
+						</td>
+					</tr>
+			     {#/for}   
+			{#/template MAIN}
+			
+		</textarea>
+	</body>
+
+</html>

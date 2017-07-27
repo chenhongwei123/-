@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>发货</title>
+		<link rel="stylesheet" type="text/css" href="../css/PCreset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+		<script src="../js/lib/jQuery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			h4 {
+				background-color: #e1e1e2;
+				padding: 10px;
+			}
+			/*	/*	/*	/*
+			.sennd_number dl{width: 265px; height: 100px;float: left;}
+			.sennd_number dl dt{width: 100px;float: left;}
+			.sennd_number dl dd{width: 150px;float: left;}
+			.sennd_number dl dd p{height: 50px;overflow: auto;}*/
+			/*.sennd_number img {
+				width: 10%;
+			}*/
+			
+			.table-bordered {
+				text-align: center;
+			}
+			
+			.table-bordered th {
+				text-align: center;
+			}
+			
+			.table-bordered thead {
+				background: #cbdcea;
+			}
+			
+			.table-bordered img {
+				width: 50px;
+			}
+			
+			.sennd_site,
+			.sennd_affirm,
+			.sennd_serve {
+				padding: 20px 50px;
+			}
+			
+			.select {
+				height: 150px;
+				overflow: auto;
+				/* background-color: #fff; */
+				line-height: 50px;
+			}
+			
+			input[type="radio"],
+			input[type="checkbox"] {
+				width: 40px;
+				height: 20px;
+			}
+			
+			.btn-default {
+				color: #fff;
+				background-color: #337ab7;
+				border-color: #337ab7;
+			}
+			
+			.sennd_serve {
+				text-align: center;
+			}
+			
+			.affirm {
+				margin-top: 20px;
+				width: 20%;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+
+			<div class="col-sm-3 col-md-2 sidebar">
+				<h3>后台管理系统</h3>
+				<ul class="nav nav-pills  nav-stacked" id="nav">
+					<li role="presentation" class="active">
+						<a href="order.html">订单管理</a>
+					</li>
+					<!--<li role="presentation">
+						<a href="logistics.html">物流管理</a>
+					</li>-->
+					<li role="presentation">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							商品管理 <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a id="nav_a" href="commodity.html">出售中的商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="send_commodity.html">发布商品</a>
+							</li>
+						</ul>
+					</li>
+					<li role="presentation">
+						<a href="moneyback.html">退款管理</a>
+					</li>
+					<li role="presentation">
+						<a href="javascript:void(0)" class="logout">退出系统</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main-console box">
+					<!--面包屑导航-->
+					<ol class="breadcrumb">
+						<li>
+							<a href="order.html">订单管理</a>
+						</li>
+						<li class="active">发货</li>
+					</ol>
+					<div class="col-md-12 send">
+						<h4>订单编号：545465828</h4>
+						<div class="sennd_number">
+
+							<table class="table table-bordered">
+
+								<thead>
+									<tr>
+										<th>宝贝</th>
+										<th>宝贝属性</th>
+										<!--<th>状态</th>-->
+										<th>单价</th>
+										<th>数量</th>
+										<th>优惠</th>
+										<th>商品总价</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<img src="../img/raw_1497493914.png" />
+											<span style='color: #1E88E5;'>美国原装进口蛋白</span>
+										</td>
+										<td>产品规格：500g</td>
+										<!--<td>已取消</td>-->
+										<td>589.2</td>
+										<td>1</td>
+										<td>231.00</td>
+										<td>589.32（快递：0.00）</td>
+									</tr>
+
+								</tbody>
+
+							</table>
+						</div>
+						<h4>寄件人地址</h4>
+						<div class="sennd_site">
+
+							<button type="button" class="btn btn-default">使用新地址</button>
+							<div class="select">
+								<input type="radio" name="fruit" value="1" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑 </span><br />
+								<input type="radio" name="fruit" value="2" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑</span><br />
+								<input type="radio" name="fruit" value="3" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑</span><br />
+								<input type="radio" name="fruit" value="4" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑</span><br />
+								<input type="radio" name="fruit" value="5" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑</span><br />
+							</div>
+
+						</div>
+						<h4>确认手件人地址</h4>
+						<div class="sennd_affirm">
+							<p>北京市大兴区亦庄经济技术开发区荣华中路19号， 272200，李星云， 18953756264</p>
+						</div>
+						<h4>选择物流服务</h4>
+						<div class="sennd_serve">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">请输入运单号</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="inputEmail3">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">选择对应的物流公司</label>
+									<div class="col-sm-4">
+										<select class="form-control">
+											<option></option>
+											<option>圆通</option>
+											<option>申通</option>
+											<option>韵达</option>
+											<option>中通</option>
+											<option>顺丰</option>
+											<option>天天</option>
+											<option>EMS</option>
+											<option>全峰</option>
+											<option>优速</option>
+											<option>快捷</option>
+											<option>宅急送</option>
+											<option>速尔</option>
+											<option>邮政</option>
+											<option>其他</option>
+										</select>
+									</div>
+								</div>
+								<button type="button" class="btn btn-default affirm">确认发货</button>
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+
+</html>

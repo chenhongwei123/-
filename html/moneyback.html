@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>退货管理</title>
+		<link rel="stylesheet" type="text/css" href="../css/PCreset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+		<script src="../js/lib/jQuery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery-time.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery-jtemplates.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/moneyback.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.nav-tabs>li>a:hover,
+			.nav-tabs>li>a:focus {
+				text-decoration: none;
+				background-color: #eee;
+				/* background-color:#3a3e42;*/
+			}
+		</style>
+		
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+
+			<div class="col-sm-3 col-md-2 sidebar">
+				<h3>后台管理系统</h3>
+				<ul class="nav nav-pills  nav-stacked" id="nav">
+					<li role="presentation">
+						<a href="order.html">订单管理</a>
+					</li>
+					<!--<li role="presentation" >
+						<a href="logistics.html">物流管理</a>
+					</li>-->
+					<li role="presentation">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							商品管理 <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a id="nav_a" href="commodity.html">出售中的商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="send_commodity.html">发布商品</a>
+							</li>
+						</ul>
+					</li>
+					<li role="presentation" class="active">
+						<a href="moneyback.html">退货管理</a>
+					</li>
+					<li role="presentation">
+						<a href="javascript:void(0)" class="logout">退出系统</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main-console box">
+					<!--面包屑导航-->
+					<ol class="breadcrumb">
+						<li class="active">退货管理</li>
+					</ol>
+
+					<div class="row">
+
+						<!--搜索-->
+						<!--<div class="col-md-12">
+
+							<select class="form-control input-sm sele1">
+								
+								<option>通过订单号搜索</option>
+
+								<option>通过收货人手机号搜索</option>
+							</select>
+							<input type="text" class="form-control wd1" name="wd" placeholder="输入要搜索的值">
+							
+							<button class="btn btn-default searchsub btn1" id="searchOrder" onclick="return false">搜索</button>
+						</div>-->
+
+						<!--表格数据-->
+						<div class="col-md-12">
+							<div class="bs-example" data-example-id="condensed-table">
+
+								<div class="col-md-6">
+									<select class="form-control input-sm sele1">
+										<option>点击下拉显示需要搜索的类型</option>
+										<option>全部</option>
+										<option>退款待处理</option>
+										<option>已拒绝退款</option>
+										<option>待卖家发货</option>
+										<option>待商家收货</option>
+										<option>已取消退款</option>
+										<option>退款成功</option>
+									</select>
+								</div>
+								
+								<div class="col-md-6">
+									<input type="text" class="form-control wd1" name="wd" placeholder="输入退款号或订单号进行搜索">
+
+									<button class="btn btn-default searchsub btn1" id="searchOrder" onclick="return false">搜索</button>
+								</div>
+								<br /><br /><br />
+								<table class="table table-hover">
+									<ul class="nav nav-tabs">
+										<li role="presentation" class="active">
+											<a href="#">全部订单</a>
+										</li>
+										<li role="presentation">
+											<a href="#">仅退款(未发货)</a>
+										</li>
+										<li role="presentation">
+											<a href="#">仅退款(已发货)</a>
+										</li>
+										<li role="presentation">
+											<a href="#">仅退货(已收货)</a>
+										</li>
+									</ul>
+									<thead>
+										<tr>
+											<th>退货编号</th>
+											<th>订单编号</th>
+											<th>买家</th>
+											<th>交易金额</th>
+											<th>退款金额</th>
+											<th>申请时间</th>
+											<th>发货物流</th>
+											<th>退货物流</th>
+											<th>原因</th>
+											<th>退款状态</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="tbody1">
+										
+
+									</tbody>
+								</table>
+								<!--分页1-->
+								<div id="Paging">
+									<input type="button" id="PrevPage" value="上一页" />
+									<input type="button" id="NextPage" value="下一页">
+									<input type="text" value="0" style="display: none;" id="dishpageval" />
+									<div id="pagination">
+										<span>第</span>
+										<b id="change">1</b>
+										<span>页</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--表格模版-->
+		<textarea id="template" style="display:none">
+			{#template MAIN}
+			    {#foreach $T as entry}
+				    <tr>
+                        <td>{$T.entry.rn}</td>
+						<td>{$T.entry.sn}</td>
+						<td>{$T.entry.name}</td>
+						<td>{to_Fixed($T.entry.price)}</td>
+						<td>{to_Fixed($T.entry.money)}</td>
+						<td>{formatDate($T.entry.createTime)}</td>
+						<td>{T_state($T.entry.state)}</td>
+						<td>{Tm_state($T.entry.state)}</td>
+						<td>{reason($T.entry.reason)}</td>
+						<td>{state($T.entry.state)}</td>
+						
+						   {#if $T.entry.state==5}<td><a onclick="btn_href({$T.entry.id})" class="btn btn_a">退款待处理</a></td> 
+							   {#elseif $T.entry.state==6} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退款待处理</a></td> 
+							   {#elseif $T.entry.state==9} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退货待处理</a></td> 
+							   {#elseif $T.entry.state==7} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退款中</a></td> 
+							   {#else} <td></td>
+						   {#/if}
+						   
+					</tr>
+			     {#/for}   
+			{#/template MAIN}
+			
+		</textarea>
+	</body>
+
+</html>

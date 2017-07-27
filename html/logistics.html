@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>物流管理</title>
+		<link rel="stylesheet" type="text/css" href="../css/PCreset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+		<script src="../js/lib/jQuery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.nav-tabs>li>a:hover,
+			.nav-tabs>li>a:focus {
+				text-decoration: none;
+				background-color: #eee;
+				/* background-color:#3a3e42;*/
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+
+			<div class="col-sm-3 col-md-2 sidebar">
+				<h3>后台管理系统</h3>
+				<ul class="nav nav-pills  nav-stacked" id="nav">
+					<li role="presentation">
+						<a href="order.html">订单管理</a>
+					</li>
+					<li role="presentation" class="active">
+						<a href="logistics.html">物流管理</a>
+					</li>
+					<li role="presentation">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							商品管理 <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a id="nav_a" href="commodity.html">出售中的商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="send_commodity.html">发布商品</a>
+							</li>
+						</ul>
+					</li>
+					<li role="presentation">
+						<a href="moneyback.html">退货管理</a>
+					</li>
+					<li role="presentation">
+						<a href="javascript:void(0)" class="logout">退出系统</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main-console box">
+					<!--面包屑导航-->
+					<ol class="breadcrumb">
+						<li class="active">物流管理</li>
+					</ol>
+
+					<div class="row">
+
+						<!--搜索-->
+						<div class="col-md-12">
+
+							<select class="form-control input-sm sele1">
+								<!--  <option>点击下拉显示需要搜索的类型</option>-->
+								<option>通过订单号搜索</option>
+
+								<option>通过收货人手机号搜索</option>
+							</select>
+							<input type="text" class="form-control wd1" name="wd" placeholder="输入要搜索的值">
+							<!--<button type="button" class="btn btn-default btn1">（默认样式）Default</button>-->
+							<button class="btn btn-default searchsub btn1" id="searchOrder" onclick="return false">搜索</button>
+						</div>
+
+						<!--表格数据-->
+						<div class="col-md-12">
+							<div class="bs-example" data-example-id="condensed-table">
+								<ul class="nav nav-tabs">
+									<li role="presentation" class="active">
+										<a href="#">等待发货的订单</a>
+									</li>
+									<li role="presentation">
+										<a href="#">发货中的订单</a>
+									</li>
+									<li role="presentation">
+										<a href="#">已发货的订单</a>
+									</li>
+								</ul>
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>订单编号</th>
+											<th>手机号</th>
+											<th>收件人</th>
+											<th>下单时间</th>
+											<th>订单状态</th>
+											<th>状态操作</th>
+											<th>更多操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Mark</td>
+											<td>Otto</td>
+											<td>@mdo</td>
+											<td>Mark</td>
+											<td>
+												<a class="btn">发货</a>
+											</td>
+											<td>
+												<a class="btn">详情</a>
+											</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Jacob</td>
+											<td>Thornton</td>
+											<td>@fat</td>
+											<td>Mark</td>
+											<td>
+												<a class="btn">发货</a>
+											</td>
+											<td>
+												<a class="btn">详情</a>
+											</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>@twitter</td>
+											<td>@twitter</td>
+											<td>@twitter</td>
+											<td>Mark</td>
+											<td>
+												<a class="btn">发货</a>
+											</td>
+											<td>
+												<a class="btn">详情</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
