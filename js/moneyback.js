@@ -14,6 +14,8 @@ $(document).ready(function() {
 	})
 	//------------------------退款状态change事件---------------------------------------------------------
 	$(".sele1").on("change", function() {
+		$("#dishpageval").val(0)
+		$("#change").text(1)
 		var index;
 		//		$(".nav-tabs li").removeClass("active");
 		var type = state_str($(".sele1").val())
@@ -35,7 +37,7 @@ function btn_href(id){
 	window.location.href="proceed_moneyback.html?goodsID=" +encodeURI(id);
 }
 //---------------------------------------------浏览退货订单----------------------------------------------
-function refunds(state, type) {
+function refunds(state,type) {
 	$.ajax({
 		type: "get",
 		url: urly("admin/refunds.json"),
@@ -101,13 +103,10 @@ function state_str(str) {
 }
 //-------------------------------------------分页------------------------------------------
 function paging(state, type) {
-
 	if($("#dishpageval").val() == 0) {
-		//	      			console.log("0")
 		$("#PrevPage").attr("disabled", true);
 	} //菜品列表分页相关
-
-	$("#NextPage").click(function() {
+	$("#NextPage").unbind().click(function() {
 		//alert("111")
 		//	$("#tbody1").empty($tr)
 		$("#change").text(1)
@@ -154,7 +153,7 @@ function paging(state, type) {
 		});
 	}); //下一页
 
-	$("#PrevPage").click(function() {
+	$("#PrevPage").unbind().click(function() {
 		var dishstart = $("#dishpageval").val() - 10;
 		$("#NextPage").removeAttr("disabled");
 		if(dishstart < 0) {

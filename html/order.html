@@ -14,7 +14,8 @@
 		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/lib/jQuery/jquery-jtemplates.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/order.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="../js/order.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="../js/复制 order.js" type="text/javascript" charset="utf-8"></script>
 
 	</head>
 
@@ -125,7 +126,7 @@
 									</div>
 								</div>
                                 <!--分页2-->
-								<div id="Paging1">
+								<!--<div id="Paging1">
 									<input type="button" id="PrevPage1" value="上一页" />
 									<input type="button" id="NextPage1" value="下一页">
 									<input type="text" value="0" style="display: none;" id="dishpageval1" />
@@ -134,7 +135,7 @@
 										<b id="change1">1</b>
 										<span>页</span>
 									</div>
-								</div>
+								</div>-->
 							</div>
 						</div>
 					</div>
@@ -191,7 +192,7 @@
 				      	<!--20.订单号-->
 				        <input type="hidden" id="sn" value="{$T.entry.sn}" />
 				        <!--21.状态-->
-				        <input type="hidden" id="state" value="{state($T.entry.state)}" />
+				        <input type="hidden" id="state" value="{state_o($T.entry.state)}" />
                         <!--22.商品标题-->
                         <input type="hidden" id="title" value="{$T.entry.title}" />
                         <!--23.下单用户id-->
@@ -202,7 +203,7 @@
 						<td>{$T.entry.sn}</td>
 						<td>{$T.entry.name}</td>
 						<td>{formatDate($T.entry.createTime)}</td>
-						<td>{state($T.entry.state)}</td>
+						<td>{state_o($T.entry.state)}</td>
 						
 						   {#if $T.entry.state==1}<td><a href="send-out.html" class="btn">发货</a></td> 
 							   {#elseif $T.entry.state==3} <td></td>  
