@@ -79,7 +79,12 @@ function getStr(string, str) {
 //----------------保留两位小数---------------------------------	
 function to_Fixed(data) {
 	//	console.log(typeof data) 
-	return parseFloat(data).toFixed(2)
+	if(data == null || data == "null") {
+		return "无"
+	} else {
+		return parseFloat(data).toFixed(2)
+	}
+	
 }
 
 //---------------------null处理-------------------------------------------
@@ -182,7 +187,7 @@ function state(e) {
 			return '退款完成'
 			break;
 		case 9:
-			return '申请退货(待发货)'
+			return '申请退货(待收货)'
 			break;
 		case 10:
 			return '申请退货(待发货)'
@@ -263,7 +268,7 @@ function T_state(e) {
 			return '退款完成'
 			break;
 		case 9:
-			return '待发货'
+			return '待收货'
 			break;
 		case 10:
 			return '待发货'

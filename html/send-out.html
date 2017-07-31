@@ -12,19 +12,13 @@
 		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/lib/jQuery/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery-jtemplates.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/send-out.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			h4 {
 				background-color: #e1e1e2;
 				padding: 10px;
 			}
-			/*	/*	/*	/*
-			.sennd_number dl{width: 265px; height: 100px;float: left;}
-			.sennd_number dl dt{width: 100px;float: left;}
-			.sennd_number dl dd{width: 150px;float: left;}
-			.sennd_number dl dd p{height: 50px;overflow: auto;}*/
-			/*.sennd_number img {
-				width: 10%;
-			}*/
 			
 			.table-bordered {
 				text-align: center;
@@ -123,71 +117,43 @@
 						<li class="active">发货</li>
 					</ol>
 					<div class="col-md-12 send">
-						<h4>订单编号：545465828</h4>
+
 						<div class="sennd_number">
-
-							<table class="table table-bordered">
-
-								<thead>
-									<tr>
-										<th>宝贝</th>
-										<th>宝贝属性</th>
-										<!--<th>状态</th>-->
-										<th>单价</th>
-										<th>数量</th>
-										<th>优惠</th>
-										<th>商品总价</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<img src="../img/raw_1497493914.png" />
-											<span style='color: #1E88E5;'>美国原装进口蛋白</span>
-										</td>
-										<td>产品规格：500g</td>
-										<!--<td>已取消</td>-->
-										<td>589.2</td>
-										<td>1</td>
-										<td>231.00</td>
-										<td>589.32（快递：0.00）</td>
-									</tr>
-
-								</tbody>
-
-							</table>
+							<!--表格数据-->
 						</div>
 						<h4>寄件人地址</h4>
 						<div class="sennd_site">
 
-							<button type="button" class="btn btn-default">使用新地址</button>
+						<!--	<button type="button" class="btn btn-default">使用新地址</button>-->
 							<div class="select">
-								<input type="radio" name="fruit" value="1" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑 </span><br />
+								<input type="text" class="form-control address" value="欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑">
+								<p style="color: red;">（注：可以直接修改为其他地址）</p>
+								<!--<input type="radio" name="fruit" value="1" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑 </span><br />
 								<input type="radio" name="fruit" value="2" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑</span><br />
 								<input type="radio" name="fruit" value="3" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑</span><br />
 								<input type="radio" name="fruit" value="4" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑</span><br />
-								<input type="radio" name="fruit" value="5" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑</span><br />
+								<input type="radio" name="fruit" value="5" /><span>欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑</span><br />-->
 							</div>
 
 						</div>
-						<h4>确认手件人地址</h4>
+						<!--<h4>确认收件人地址</h4>
 						<div class="sennd_affirm">
 							<p>北京市大兴区亦庄经济技术开发区荣华中路19号， 272200，李星云， 18953756264</p>
-						</div>
+						</div>-->
 						<h4>选择物流服务</h4>
 						<div class="sennd_serve">
 							<form class="form-horizontal">
 								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label">请输入运单号</label>
+									<label for="inputcode" class="col-sm-2 control-label">请输入运单号</label>
 									<div class="col-sm-4">
-										<input type="text" class="form-control" id="inputEmail3">
+										<input type="number" class="form-control inputcode" id="inputcode">
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputEmail3" class="col-sm-2 control-label">选择对应的物流公司</label>
+									<label for="inputexpress" class="col-sm-2 control-label">选择对应的物流公司</label>
 									<div class="col-sm-4">
-										<select class="form-control">
-											<option></option>
+										<select class="form-control inputexpress" id="inputexpress">
+											<option>其他</option>
 											<option>圆通</option>
 											<option>申通</option>
 											<option>韵达</option>
@@ -201,11 +167,11 @@
 											<option>宅急送</option>
 											<option>速尔</option>
 											<option>邮政</option>
-											<option>其他</option>
+											
 										</select>
 									</div>
 								</div>
-								<button type="button" class="btn btn-default affirm">确认发货</button>
+								<button type="button" class="btn btn-default affirm send-out" >确认发货</button>
 							</form>
 
 						</div>
@@ -216,7 +182,41 @@
 			</div>
 
 		</div>
-
+		<!--模版数据-->
+		<textarea id="template" style="display:none">
+			{#template MAIN}
+			      <table class="table table-bordered">
+					<h4>订单编号：{xs_null($T.code)}</h4>
+					<thead>
+						<tr>
+							<th>宝贝</th>
+							<th>宝贝属性</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>优惠</th>
+							<th>商品总价</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<img {$T.img} />
+								<span style='color: #1E88E5;'>{xs_null($T.title)}</span>
+							</td>
+							<td>产品规格：{xs_null($T.label)}</td>
+							<td>{to_Fixed($T.money)}</td>
+							<td>{xs_null($T.num)}</td>
+							<td>{to_Fixed($T.amount)}</td>
+							<td>{to_Fixed($T.num*$T.money)}（快递：{to_Fixed($T.fare)})</td>
+						</tr>
+					</tbody>
+				</table>
+				<h4>确认收件人地址</h4>
+						<div class="sennd_affirm">
+							<p>{xs_null($T.address)}，{xs_null($T.name)} ，{xs_null($T.mobile)} </p>
+						</div>
+			{#/template MAIN}
+		</textarea>
 	</body>
 
 </html>

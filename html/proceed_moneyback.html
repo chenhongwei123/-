@@ -18,7 +18,12 @@
 		<script src="../js/lib/sweetalert/sweetalert-dev.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/proceed_moneyback.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
-			.T_type1,.T_type2,.T_type3,.T_type4,.T_type5,.T_type6 {
+			.T_type1,
+			.T_type2,
+			.T_type3,
+			.T_type4,
+			.T_type5,
+			.T_type6 {
 				display: none;
 				height: 50px;
 				background: #FFFFFF;
@@ -70,7 +75,6 @@
 				margin-left: 5%;
 				font-size: 18px;
 			}
-			
 			/*.btn-lg {
 				margin-left: 5%;
 			}*/
@@ -125,7 +129,7 @@
 					</ol>
 					<div class="row">
 						<!--表格数据-->
-						<div class="col-md-12 T_type" >
+						<div class="col-md-12 T_type">
 							<!--退款申请1-->
 							<ul class="T_type1">
 								<li class="T_active">1. 卖家申请退款退款 </li>
@@ -156,8 +160,7 @@
 								<li>></li>
 								<li class="T_active">4. 退款完成</li>
 							</ul>
-							
-							
+
 							<!--退货申请1-->
 							<ul class="T_type4">
 								<li class="T_active">1. 卖家申请退货退款 </li>
@@ -188,8 +191,7 @@
 								<li>></li>
 								<li class="T_active">4. 卖家确认收货，退货完成</li>
 							</ul>
-							
-							
+
 							<table class="table table-bordered">
 								<thead>
 									<tr>
@@ -203,38 +205,39 @@
 										<th>要求</th>
 										<th>货物状态</th>
 										<th>备注</th>
+										<th>更新时间</th>
 									</tr>
 								</thead>
 								<tbody id="tbody1">
 
 								</tbody>
 							</table>
-							
-                            <!--退款申请-->
+
+							<!--退款申请-->
 							<div class="T_1">
 								<h3>请处理退款申请</span> <span>倒计时：<b class="count_down"></b></span></h3>
+								<div class="text" style="padding: 0px;">
 									<div class="text" style="padding: 0px;">
-										<div class="text" style="padding: 0px;">
-											<p>如果你同意退款，请直接点击同意退款</p>
-											<p>如有其他异议请联系买家处理</p>
-											<p>如果你不及时处理，退款将于<i></i>之后自动退还给买家。</p>
-											<button class="btn  btn-primary btn-lg btn_agree">同意退款</button>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<button class="btn  btn-lg btn_contact">联系买家</button>
-										</div>
-										<hr />
-										<p>买家提出退款申请：<span class="timer"></p>
+										<p>如果你同意退款，请直接点击同意退款</p>
+										<p>如有其他异议请联系买家处理</p>
+										<p>如果你不及时处理，退款将于<i></i>之后自动退还给买家。</p>
+										<button class="btn  btn-primary btn-lg btn_agree">同意退款</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button class="btn btn_nomoney btn-lg">拒绝退款申请</button>
+										<!--<button class="btn  btn-lg btn_contact">联系买家</button>-->
+									</div>
+									<hr />
+									<p>买家提出退款申请：<span class="timer"></p>
 								</div>
 							</div>
 							<!--退款中-->
 							<div class="T_2">
 								<h3>退款处理中...</span></h3>
-								<div class="text" style="padding: 0px;">
-									<div class="text" style="padding: 0px;">
-										<button class="btn  btn-lg btn_contact">联系买家</button>
-									</div>
-									<hr />
-									<p>卖家同意退款申请：<span class="timerx"></p>
+										<div class="text" style="padding: 0px;">
+											<div class="text" style="padding: 0px;">
+												<button class="btn  btn-lg btn_contact">联系买家</button>
+											</div>
+											<hr />
+											<p>卖家同意退款申请：<span class="timerx"></p>
 								    <p>买家提出退款申请：<span class="timer"></p>
 								</div>
 							</div>
@@ -253,18 +256,32 @@
 							<!--退货申请-->
 							<div class="T_4">
 								<h3>请处理退货申请   <span>倒计时：<b class="count_down"></b></span></h3>
-								<div class="text" style="padding: 0px;">
-									<p>如果同意申请，请发送正确的退货地址给买家 </p>
-									<p>如果拒绝申请，请联系买家协商</p>
-									<p>如果逾期未响应申请，试做同意买家的申请，系统自动将您的默认退货地址发送给买家</p>
-									<button class="btn  btn-primary btn-lg" data-toggle="modal" data-target="#myModal">同意退货，发送退货地址</button>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<button class="btn btn_no btn-lg">拒绝退货申请</button>
-									<!-- Button trigger modal -->
-								</div>
-								<hr />
-								<p>买家提出退款申请：<span class="timer"></p>
+									<div class="text" style="padding: 0px;">
+										<p>如果同意申请，请发送正确的退货地址给买家 </p>
+										<p>如果拒绝申请，请联系买家协商</p>
+										<p>如果逾期未响应申请，试做同意买家的申请，系统自动将您的默认退货地址发送给买家</p>
+										<button class="btn  btn-primary btn-lg" data-toggle="modal" data-target="#myModal">同意退货，发送退货地址</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button class="btn btn_no btn-lg">拒绝退货申请</button>
+										<!-- Button trigger modal -->
+									</div>
+									<hr />
+									<p>买家提出退货申请：<span class="timer"></p>
 							</div>
+							
+							<!--等待买家发货-->
+							<!--<div class="T_5">
+								<h3>待买家发货   <span>倒计时：<b class="count_down"></b></span></h3>
+									<div class="text" style="padding: 0px;">
+									
+										<p>如果买家在<i></i>内未退货，退款申请将自动关闭。</p>
+										<p>收到买家退货时，请及时验货</p>
+										<button class="btn  btn-primary btn-lg btn_agreegoods">同意退款</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button class="btn  btn-lg btn_nogoods">拒绝退货申请</button>
+										
+									</div>
+									<hr />
+									<p>买家提出退货申请：<span class="timer"></p>
+							</div>-->
 						</div>
 					</div>
 				</div>
@@ -288,6 +305,7 @@
 						<td>{require($T.type)}</td>
 						<td>{state($T.state)}</td>
 						<td>{xs_null($T.remark)}</td>
+						<td>{formatDate($T.updateTime)}</td>
 					</tr>
 			{#/template MAIN}
 		</textarea>
@@ -297,40 +315,30 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-															<h4 class="modal-title" id="myModalLabel">请填写退货地址</h4>
+													<h4 class="modal-title" id="myModalLabel">请填写退货地址</h4>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="col-sm-6">
+														<label for="default">默认地址：</label>
 													</div>
-													<div class="modal-body">
-														<div class="row">
-															<div class="col-md-6">
-																<div class="col-sm-6">
-																	<label for="default">默认地址：</label>
-																</div>
-																<div class="col-sm-6">
-																	<!--<textarea name="" id="" cols="30" rows="10"></textarea>-->
-																	<input type="checkbox" checked name="site" id="default" value=" ">
-																</div>
-															</div>
-														</div>
-
-														<div class="row">
-															<div class="col-md-6">
-																<div class="col-sm-6">
-																	<label for="write">其他地址：</label>
-																</div>
-																<div class="col-sm-6">
-																	<textarea name="" id="" cols="50" rows="3"></textarea>
-																	<!--<input type="checkbox" name="site" id="write" value="">-->
-																</div>
-															</div>
-														</div>
+													<div class="col-sm-12">
+														<input type="text" class="form-control address" value="欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑">
+														<p style="color: red;">（注：可以直接修改为其他地址）</p>
+													
 													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-														<button type="button" class="btn btn-primary btn_yes">确定</button>
-													</div>
+												</div>
 											</div>
-									</div>
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary btn_yes">确定</button>
+										</div>
+								</div>
 							</div>
+						</div>
 
 	</body>
 

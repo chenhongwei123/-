@@ -19,6 +19,23 @@ $(document).ready(function() {
 			});
 
 	})
+	//--------------------------------拒绝退款申请--------------------------------------------
+
+	$(".btn_nomoney").click(function() {
+		swal({
+				title: "确定拒绝买家的退款申请?",
+				text: "",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes",
+				closeOnConfirm: false
+			},
+			function() {
+				dispose(id, 3)
+			});
+
+	})
 	//-------------------------------联系买家------------------------------------------------
 	$(".btn_contact").click(function() {
 		var mobile = $("#mobile").val()
@@ -29,10 +46,12 @@ $(document).ready(function() {
 	//------------------------------同意退货----------------------------------------------
 	$(".btn_yes").click(function() {
 		//alert("11")
-		if($('#default').is(':checked')) {
-			dispose(id, 2, address)
+		var address=$('.address').val()
+		if(address.length==0) {
+			alert("请填写收货地址给买家")
 		} else {
-			alert("请选择默认地址或填写其他地址")
+			
+			dispose(id, 2)
 		}
 
 	})
@@ -49,7 +68,7 @@ $(document).ready(function() {
 			},
 			function() {
 				dispose(id, 4)
-				alert('111')
+				//alert('111')
 			});
 	})
 })
@@ -83,6 +102,9 @@ function refund(id) {
 					} else if(state == 8) {
 						$(".T_3").css("display", "block")
 						$(".T_type3").css("display", "block")
+					}else if(state == 9) {
+						$(".T_4").css("display", "block")
+						$(".T_type4").css("display", "block")
 					}
 
 					//-------------倒计时处理--------------------------------------------
@@ -98,8 +120,10 @@ function refund(id) {
 					//卖家同意退款时间
 					$(".timerx").html(formatDate(data.data.agreeTime))
 					//联系电话
-					//console.log(data.data.mobile)
 					$("#mobile").val(data.data.mobile)
+					
+					
+					
 					//模版渲染
 					var jsondata = data.data;
 					$("#tbody1").setTemplateElement("template");
@@ -150,7 +174,6 @@ function dispose(id, type, address) {
 				default:
 					alert("请求失败")
 					console.log(data.code)
-
 			}
 		},
 		error: function(XmlHttpRequest, textStatus, errorThrown) {

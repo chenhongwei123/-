@@ -9,7 +9,6 @@ $(document).ready(function() {
 			"code": $.cookie("code"),
 			"token": $.cookie("token")
 		},
-
 		dataType: "json",
 
 		data: {
