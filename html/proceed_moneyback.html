@@ -60,7 +60,11 @@
 			.T_1,
 			.T_2,
 			.T_3,
-			.T_4 {
+			.T_4,
+			.T_5,
+			.T_6,
+			.T_7,
+			.T_8 {
 				padding: 1% 5%;
 				display: none;
 			}
@@ -191,6 +195,8 @@
 								<li>></li>
 								<li class="T_active">4. 卖家确认收货，退货完成</li>
 							</ul>
+							
+							
 
 							<table class="table table-bordered">
 								<thead>
@@ -220,7 +226,7 @@
 									<div class="text" style="padding: 0px;">
 										<p>如果你同意退款，请直接点击同意退款</p>
 										<p>如有其他异议请联系买家处理</p>
-										<p>如果你不及时处理，退款将于<i></i>之后自动退还给买家。</p>
+										<p>如果你不及时处理，退款将于<i class="i"></i>之后自动退还给买家。</p>
 										<button class="btn  btn-primary btn-lg btn_agree">同意退款</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<button class="btn btn_nomoney btn-lg">拒绝退款申请</button>
 										<!--<button class="btn  btn-lg btn_contact">联系买家</button>-->
@@ -231,14 +237,14 @@
 							</div>
 							<!--退款中-->
 							<div class="T_2">
-								<h3>退款处理中...</span></h3>
+								<h3>退款（退货退款）处理中...</span></h3>
 										<div class="text" style="padding: 0px;">
 											<div class="text" style="padding: 0px;">
 												<button class="btn  btn-lg btn_contact">联系买家</button>
 											</div>
 											<hr />
-											<p>卖家同意退款申请：<span class="timerx"></p>
-								    <p>买家提出退款申请：<span class="timer"></p>
+											<p>卖家同意退款（退货退款）申请：<span class="timerx"></p>
+								    <p>买家提出退款（退货退款）申请：<span class="timer"></p>
 								</div>
 							</div>
 							<!--退款完成-->
@@ -260,7 +266,7 @@
 										<p>如果同意申请，请发送正确的退货地址给买家 </p>
 										<p>如果拒绝申请，请联系买家协商</p>
 										<p>如果逾期未响应申请，试做同意买家的申请，系统自动将您的默认退货地址发送给买家</p>
-										<button class="btn  btn-primary btn-lg" data-toggle="modal" data-target="#myModal">同意退货，发送退货地址</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button class="btn  btn-primary btn-lg btn_yes">同意退货，发送退货地址</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<button class="btn btn_no btn-lg">拒绝退货申请</button>
 										<!-- Button trigger modal -->
 									</div>
@@ -269,19 +275,62 @@
 							</div>
 							
 							<!--等待买家发货-->
-							<!--<div class="T_5">
-								<h3>待买家发货   <span>倒计时：<b class="count_down"></b></span></h3>
+							<div class="T_5">
+								<h3>待买家发货   <span>倒计时：<b class="count_down2"></b></span></h3>
 									<div class="text" style="padding: 0px;">
 									
-										<p>如果买家在<i></i>内未退货，退款申请将自动关闭。</p>
+										<p>如果买家在<i class="i2"></i>内未退货，退款申请将自动关闭。</p>
 										<p>收到买家退货时，请及时验货</p>
-										<button class="btn  btn-primary btn-lg btn_agreegoods">同意退款</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<button class="btn  btn-lg btn_nogoods">拒绝退货申请</button>
+										<button class="btn  btn-primary btn-lg btn_agreegoods">已收到货，同意退款</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<!--<button class="btn  btn-lg btn_nogoods">拒绝退货申请</button>-->
+										<button class="btn  btn-lg btn_contact">联系买家</button>
 										
 									</div>
 									<hr />
+									<p>卖家同意退货申请：<span class="timerx"></p>
 									<p>买家提出退货申请：<span class="timer"></p>
-							</div>-->
+							</div>
+							
+							<!--买家退货给卖家-->
+							<div class="T_6">
+								<h3>退货物流运送中   <span>倒计时：<b class="count_down3"></b></span></h3>
+									<div class="text" style="padding: 0px;">
+									    <p>物流信息：<span class="express"></span> &nbsp; 快递单号：<span class="code"></span></p>
+										<!--<p>如果买家在<i class="i3"></i>内未退货，退款申请将自动关闭。</p>-->
+										<p>收到买家退货时，请及时验货</p>
+										<button class="btn  btn-primary btn-lg btn_agreegoods">已收到货，同意退款</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<button class="btn  btn-lg btn_contact">联系买家</button>
+									</div>
+									<hr />
+									<p>买家发货，等待商家收货：<span class="timerf"></p>
+									<p>卖家同意退货申请：<span class="timerx"></p>
+									<p>买家提出退货申请：<span class="timer"></p>
+							</div>
+							<!--退货退款完成-->
+							<div class="T_7">
+								<h3>商家已收到货品，退款退货完成</h3>
+									<div class="text" style="padding: 0px;">
+										<button class="btn  btn-lg btn_contact">联系买家</button>
+									</div>
+									<hr />
+									<p>商家已收货，退货完成：<span class="timerOK"></p>
+									<p>买家发货，等待商家收货：<span class="timerf"></p>
+									<p>卖家同意退货申请：<span class="timerx"></p>
+									<p>买家提出退货申请：<span class="timer"></p>
+							</div>
+							<!--拒绝退款或退货退款-->
+							<div class="T_8">
+								<h3>你已拒绝了申请，退款（退货退款）已关闭</h3>
+									<div class="text" style="padding: 0px;">
+										<p>联系买家协商是否退款（退货退款），买家如需继续退款（退货退款）可以再次提交退款（退货退款）申请</p>
+										
+									</div>
+									<hr />
+									<!--<p>商家已收货，退货完成：<span class="timerOK"></p>
+									<p>买家发货，等待商家收货：<span class="timerf"></p>
+									<p>卖家同意退货申请：<span class="timerx"></p>-->
+									<p>买家提出退款（退货退款）申请：<span class="timer"></p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -299,7 +348,7 @@
 						<td>{$T.name}</td>
 						<td>{$T.sn}</td>
 						<td>{to_Fixed($T.money)}</td>
-						<td>{xs_null($T.express)}</td>
+						<td>{shipped($T.entry.shipped)}</td>
 						<td>{xs_null($T.rn)}</td>
 						<td>{reason($T.reason)}</td>
 						<td>{require($T.type)}</td>

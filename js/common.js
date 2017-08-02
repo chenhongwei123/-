@@ -67,7 +67,6 @@ function getTime(time) {
 	return d + "天" + h + "时" + m + "分" + s + "秒";
 }
 
-
 //--------------------------字符串处理----------------------------------------
 function getStr(string, str) {
 	var str_before = string.split(str)[0];
@@ -84,7 +83,7 @@ function to_Fixed(data) {
 	} else {
 		return parseFloat(data).toFixed(2)
 	}
-	
+
 }
 
 //---------------------null处理-------------------------------------------
@@ -234,89 +233,38 @@ function state(e) {
 		case 24:
 			return '取消退货(已收货)'
 			break;
+		case 25:
+			return '退货退款中'
+			break;	
 	};
 }
+
+//----------------------------（物流显示）是否发货转换-------------------------------------------------
+function T_state(data) {
+	if(data == null || data == "null") {
+		return "未发货"
+	} else {
+		return data
+	}
+}
+
 //----------------------------退单是否发货转换-------------------------------------------------
-function T_state(e) {
+function shipped(data) {
 	switch(e) {
 		case 0:
-			return '待支付'
+			return '未发货'
+			break;
+		case 1:
+			return '已发货'
+			break;
+		
+		default:
+			return '-'
 			break;
 
-		case 1:
-			return '待发货'
-			break;
-		case 2:
-			return '待收货'
-			break;
-		case 3:
-			return '待评价'
-			break;
-		case 4:
-			return '已完成'
-			break;
-		case 5:
-			return '待发货'
-			break;
-		case 6:
-			return '待收货'
-			break;
-		case 7:
-			return '退款中'
-			break;
-		case 8:
-			return '退款完成'
-			break;
-		case 9:
-			return '待收货'
-			break;
-		case 10:
-			return '待发货'
-			break;
-		case 11:
-			return '已收货'
-			break;
-		case 12:
-			return '待买家发货'
-			break;
-		case 13:
-			return '待卖家收货'
-			break;
-		case 14:
-			return '退货退款完成'
-			break;
-		case 15:
-			return '待发货'
-			break;
-		case 16:
-			return '待收货'
-			break;
-		case 17:
-			return '待收货'
-			break;
-		case 18:
-			return '待评价'
-			break;
-		case 19:
-			return '已收货'
-			break;
-		case 20:
-			return '待发货'
-			break;
-		case 21:
-			return '待收货'
-			break;
-		case 22:
-			return '待收货'
-			break;
-		case 23:
-			return '待评价'
-			break;
-		case 24:
-			return '已收货'
-			break;
 	};
 }
+
 
 //----------------------------买家发货转换-------------------------------------------------
 function Tm_state(e) {

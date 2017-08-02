@@ -23,7 +23,7 @@
 				/* background-color:#3a3e42;*/
 			}
 		</style>
-		
+
 	</head>
 
 	<body>
@@ -100,12 +100,12 @@
 										<option>退款成功</option>
 									</select>
 								</div>
-								
-								<div class="col-md-6">
+
+								<!--<div class="col-md-6">
 									<input type="text" class="form-control wd1" name="wd" placeholder="输入退款号或订单号进行搜索">
 
 									<button class="btn btn-default searchsub btn1" id="searchOrder" onclick="return false">搜索</button>
-								</div>
+								</div>-->
 								<br /><br /><br />
 								<table class="table table-hover">
 									<ul class="nav nav-tabs">
@@ -138,7 +138,6 @@
 										</tr>
 									</thead>
 									<tbody id="tbody1">
-										
 
 									</tbody>
 								</table>
@@ -170,16 +169,21 @@
 						<td>{to_Fixed($T.entry.price)}</td>
 						<td>{to_Fixed($T.entry.money)}</td>
 						<td>{formatDate($T.entry.createTime)}</td>
-						<td>{T_state($T.entry.state)}</td>
-						<td>{Tm_state($T.entry.state)}</td>
+						<td>{shipped($T.entry.shipped)}</td>
+						<td>{T_state($T.entry.express)}</td>
 						<td>{reason($T.entry.reason)}</td>
 						<td>{state($T.entry.state)}</td>
 						
 						   {#if $T.entry.state==5}<td><a onclick="btn_href({$T.entry.id})" class="btn btn_a">退款待处理</a></td> 
-							   {#elseif $T.entry.state==6} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退款待处理</a></td> 
-							   {#elseif $T.entry.state==9} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退货待处理</a></td> 
-							   {#elseif $T.entry.state==7} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退款中</a></td> 
-							   {#else} <td></td>
+							    {#elseif $T.entry.state==6} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退款待处理</a></td> 
+							    {#elseif $T.entry.state==7} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退款中</a></td> 
+							    {#elseif $T.entry.state==8} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退款完成</a></td>
+							    {#elseif $T.entry.state==9} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退货待处理</a></td> 
+							    {#elseif $T.entry.state==12} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退货待处理</a></td> 
+							    {#elseif $T.entry.state==13} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退货待处理</a></td>
+							    {#elseif $T.entry.state==14} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退货退款完成</a></td> 
+							    {#elseif $T.entry.state==25} <td><a onclick="btn_href({$T.entry.id})"  class="btn">退货退款中</a></td> 
+							    {#else} <td></td>
 						   {#/if}
 						   
 					</tr>
