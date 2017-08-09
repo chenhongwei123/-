@@ -90,7 +90,7 @@ function orders_paging(state) {
 		$("#PrevPage").attr("disabled", true);
 	} //菜品列表分页相关
 	$("#NextPage").unbind().click(function() {
-		console.log(state)
+		//console.log(state)
 		$("#change").text(1)
 		$("#PrevPage").removeAttr("disabled");
 		var dishstart = ($("#dishpageval").val() - 0) + 10;
@@ -193,27 +193,35 @@ function state_str(str) {
 	}
 }
 //----------------------------------------------数据存储本地-----------------------------------------------
-function click_Storage(e) {
-	var id = $(e.target.parentNode.parentNode.children[0]).val()
-	var name = $(e.target.parentNode.parentNode.children[15]).val()
-	var mobile = $(e.target.parentNode.parentNode.children[13]).val()
-	var sn = $(e.target.parentNode.parentNode.children[20]).val()
-	var createTime = $(e.target.parentNode.parentNode.children[5]).val()
-	var img = $(e.target.parentNode.parentNode.children[11]).val()
-	var title = $(e.target.parentNode.parentNode.children[22]).val()
-	var label = $(e.target.parentNode.parentNode.children[12]).val()
-	var state = $(e.target.parentNode.parentNode.children[21]).val()
-	var money = $(e.target.parentNode.parentNode.children[14]).val()
-	var num = $(e.target.parentNode.parentNode.children[16]).val()
-	var amount = $(e.target.parentNode.parentNode.children[2]).val()
-	var address = $(e.target.parentNode.parentNode.children[1]).val()
-	var fare = $(e.target.parentNode.parentNode.children[8]).val()
-	var express = $(e.target.parentNode.parentNode.children[7]).val()
-	var code = $(e.target.parentNode.parentNode.children[4]).val()
-	var remark = $(e.target.parentNode.parentNode.children[17]).val()
-	var str1 = '{"id":"' + id + '","name":"' + name + '","mobile":"' + mobile + '","sn":"' + sn + '","createTime":"' + createTime + '","img":"' + img + '","title":"' + title + '","label":"' + label + '","state":"' + state + '","money":"' + money + '","num":"' + num + '","amount":"' + amount + '","address":"' + address + '","fare":"' + fare + '","express":"' + express + '", "code":"' + code + '","remark":"' + remark + '"}'
-	localStorage.setItem('click_Storage', str1)
-} //----------------------------订单状态类型转换-------------------------------------------------
+function btn_href(id) {
+	console.log(id)
+	window.location.href="datails.html?goodsID=" +encodeURI(id);
+//	var id = $(e.target.parentNode.parentNode.children[0]).val()
+//	var name = $(e.target.parentNode.parentNode.children[15]).val()
+//	var mobile = $(e.target.parentNode.parentNode.children[13]).val()
+//	var sn = $(e.target.parentNode.parentNode.children[20]).val()
+//	var createTime = $(e.target.parentNode.parentNode.children[5]).val()
+//	var img = $(e.target.parentNode.parentNode.children[11]).val()
+//	var title = $(e.target.parentNode.parentNode.children[22]).val()
+//	var label = $(e.target.parentNode.parentNode.children[12]).val()
+//	var state = $(e.target.parentNode.parentNode.children[21]).val()
+//	var money = $(e.target.parentNode.parentNode.children[14]).val()
+//	var num = $(e.target.parentNode.parentNode.children[16]).val()
+//	var amount = $(e.target.parentNode.parentNode.children[2]).val()
+//	var address = $(e.target.parentNode.parentNode.children[1]).val()
+//	var fare = $(e.target.parentNode.parentNode.children[8]).val()
+//	var express = $(e.target.parentNode.parentNode.children[7]).val()
+//	var code = $(e.target.parentNode.parentNode.children[4]).val()
+//	var remark = $(e.target.parentNode.parentNode.children[17]).val()
+//	var str1 = '{"id":"' + id + '","name":"' + name + '","mobile":"' + mobile + '","sn":"' + sn + '","createTime":"' + createTime + '","img":"' + img + '","title":"' + title + '","label":"' + label + '","state":"' + state + '","money":"' + money + '","num":"' + num + '","amount":"' + amount + '","address":"' + address + '","fare":"' + fare + '","express":"' + express + '", "code":"' + code + '","remark":"' + remark + '"}'
+//	localStorage.setItem('click_Storage', str1)
+} 
+function btn_href2(id) {
+	console.log(id)
+	window.location.href="send-out.html?goodsID=" +encodeURI(id);
+} 
+
+//----------------------------订单状态类型转换-------------------------------------------------
 function state_o(e) {
 	switch(e) {
 		case 0:

@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>出售中的商品</title>
+		<title>下架的商品</title>
 		<link rel="stylesheet" type="text/css" href="../css/PCreset.css" />
 		<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="../css/lib/sweetalert.css" />
@@ -16,7 +16,7 @@
 		<script src="../js/lib/jQuery/jquery-jtemplates.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/lib/sweetalert/sweetalert-dev.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../js/commodity.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/sold_out.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
@@ -39,10 +39,10 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a id="nav_a" href="commodity.html" class="active_a">出售中的商品</a>
+								<a id="nav_a" href="commodity.html">出售中的商品</a>
 							</li>
 							<li>
-								<a id="nav_a" href="sold_out.html">下架的商品</a>
+								<a id="nav_a" href="sold_out.html" class="active_a">下架的商品</a>
 							</li>
 							<li>
 								<a id="nav_a" href="send_commodity.html">发布商品</a>
@@ -62,12 +62,12 @@
 					<!--面包屑导航-->
 					<ol class="breadcrumb">
 						<li>商品管理</li>
-						<li class="active">出售中的商品</li>
+						<li class="active">下架的商品</li>
 					</ol>
-					<a class="btn" href="sold_out.html">进入下架商品列表</a>
+					<a class="btn" href="commodity.html">进入出售中的商品列表</a>
 					<div style="position: relative;top: 30px;left: 2.2%;" class="checkall_div">
 						<td><input type="checkbox" id="checkall"></td>
-						<td style="position: absolute;"><span>全选</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete">下架</button></td>
+						<td style="position: absolute;"><span>全选</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete">上架</button></td>
 					</div>
 					<table class="table" style="background-color: #FFFFFF;">
 

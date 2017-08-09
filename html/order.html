@@ -40,6 +40,9 @@
 								<a id="nav_a" href="commodity.html">出售中的商品</a>
 							</li>
 							<li>
+								<a id="nav_a" href="sold_out.html">下架的商品</a>
+							</li>
+							<li>
 								<a id="nav_a" href="send_commodity.html">发布商品</a>
 							</li>
 						</ul>
@@ -100,7 +103,7 @@
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>订单编号</th>
+											<th>订单id</th>
 											<th>手机号</th>
 											<th>订单号</th>
 											<th>收件人</th>
@@ -207,15 +210,15 @@
 						<td>{T_state($T.entry.express)}</td>
 						<td>{state_o($T.entry.state)}</td>
 						
-						   {#if $T.entry.state==1}<td><a onclick="click_Storage(event)" href="send-out.html" class="btn">发货</a></td> 
-						       {#elseif $T.entry.state==15} <td><a onclick="click_Storage(event)" href="send-out.html" class="btn">发货</a></td> 
-						       {#elseif $T.entry.state==20} <td><a onclick="click_Storage(event)" href="send-out.html" class="btn">发货</a></td> 
+						   {#if $T.entry.state==1}<td><a onclick="btn_href2({$T.entry.id})" class="btn">发货</a></td> 
+						       {#elseif $T.entry.state==15} <td><a onclick="btn_href2({$T.entry.id})"  class="btn">发货</a></td> 
+						       {#elseif $T.entry.state==20} <td><a onclick="btn_href2({$T.entry.id})"  class="btn">发货</a></td> 
 							   {#elseif $T.entry.state==3} <td></td>  
 							   {#else} <td></td>  
 						   {#/if}  
 						   
 						<td>
-							<a onclick="click_Storage(event)" href="datails.html" class="btn">详情</a>
+							<a onclick="btn_href({$T.entry.id})" class="btn">详情</a>
 						</td>
 					</tr>
 			     {#/for}   

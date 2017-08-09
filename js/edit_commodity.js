@@ -1,6 +1,18 @@
 $(document).ready(function() {
-	//-----------------------------------------验证阿里百川---------------------------------------
 
+	//--------------------------------获取地址上的ID-------------------------------------
+	//console.log(getQueryString("goodsID"))
+	var id = getQueryString("goodsID")
+	bjpDetail(id)
+	var timer;
+	clearTimeout(timer)
+	timer = setTimeout(function() {
+		zlid()
+		ppid()
+		gysid()
+	}, 500)
+
+	//-----------------------------------------验证阿里百川---------------------------------------
 	$.ajax({
 		type: "get",
 		url: "https://bzapi.honganjk.com/common/getToken.action",
@@ -23,129 +35,16 @@ $(document).ready(function() {
 			}
 		}
 	});
-	//---------------------------获取种类id---------------------------------------
-	$.ajax({
-		type: "get",
-		headers: {
-			"code": $.cookie("code"),
-			"token": $.cookie("token")
-		},
-		url: urly("admin/kinds.json"),
-		data: {
-			"start": 0,
-			"size": 100
-		},
-		async: true,
-		dataType: "json",
-		success: function(data) {
-			console.log(data)
-			switch(JSON.stringify(data.code)) {
-				case '"A00000"':
-					$.each(data.data.objs, function(index) {
-						var $select = ("<option >" + data.data.objs[index].id + "." + data.data.objs[index].label + "</option>")
-						$("#sele_id").append($select)
-					})
-					break;
-				default:
-					alert(data.msg)
-			}
-		},
-		error: function(XmlHttpRequest, textStatus, errorThrown) {
-			console.log("请求失败" + XmlHttpRequest.responseText);
-			console.log("请求失败" + XMLHttpRequest.status);
-			console.log("请求失败" + XMLHttpRequest.readyState);
-			console.log("请求失败" + textStatus);
-			if(textStatus == "parsererror") {
-				window.location.href = "../login.html"
-			}
-		}
-	});
-	//---------------------------获取品牌id---------------------------------------
-	$.ajax({
-		type: "get",
-		headers: {
-			"code": $.cookie("code"),
-			"token": $.cookie("token")
-		},
-		url: urly("admin/brands.json"),
-		data: {
-			"start": 0,
-			"size": 100
-		},
-		async: true,
-		dataType: "json",
-		success: function(data) {
-			console.log(data)
-			switch(JSON.stringify(data.code)) {
-				case '"A00000"':
-					$.each(data.data.objs, function(index) {
-						var $select = ("<option >" + data.data.objs[index].id + "." + data.data.objs[index].label + "</option>")
-						$("#sele_id2").append($select)
-					})
-					break;
-				default:
-					alert(data.msg)
-			}
-		},
-		error: function(XmlHttpRequest, textStatus, errorThrown) {
-			console.log("请求失败" + XmlHttpRequest.responseText);
-			console.log("请求失败" + XMLHttpRequest.status);
-			console.log("请求失败" + XMLHttpRequest.readyState);
-			console.log("请求失败" + textStatus);
-			if(textStatus == "parsererror") {
-				window.location.href = "../login.html"
-			}
-		}
-	});
 
-	//---------------------------获取供应商id---------------------------------------
-	$.ajax({
-		type: "get",
-		headers: {
-			"code": $.cookie("code"),
-			"token": $.cookie("token")
-		},
-		url: urly("admin/supplys.json"),
-		data: {
-			"start": 0,
-			"size": 100
-		},
-		async: true,
-		dataType: "json",
-		success: function(data) {
-			console.log(data)
-			switch(JSON.stringify(data.code)) {
-				case '"A00000"':
-					$.each(data.data.objs, function(index) {
-						var $select = ("<option >" + data.data.objs[index].id + "." + data.data.objs[index].feature + "</option>")
-						$("#sele_id3").append($select)
-					})
-					break;
-				default:
-					alert(data.msg)
-			}
-		},
-		error: function(XmlHttpRequest, textStatus, errorThrown) {
-			console.log("请求失败" + XmlHttpRequest.responseText);
-			console.log("请求失败" + XMLHttpRequest.status);
-			console.log("请求失败" + XMLHttpRequest.readyState);
-			console.log("请求失败" + textStatus);
-			if(textStatus == "parsererror") {
-				window.location.href = "../login.html"
-			}
-		}
-	});
 	//--------------------获取图片地址-----------------------------------
-
 	$(".btn_send").click(function() {
+		//console.log($(".g_object").val())
 		var fruit = new Array();
 		var fruit2 = new Array();
 		var user = {};
 		var arrx = new Array();
-		//console.log($(".banner input:hidden[name='fruit']").val())
-
+		
 		$(".banner input:hidden[name='fruit']").each(function() {
-
 			if($(this).val().length !== 0) {
 				fruit.push($(this).val());
 			}
@@ -163,25 +62,29 @@ $(document).ready(function() {
 				arr = JSON.parse($(this).val())
 				arrx.push(arr);
 			} else {
-				alert("请添加规格")
+				alert("规格未保存")
+				
 			}
 		});
 		user = arrx
+		console.log(user)
 		var name = $("#inputName").val()
 		var type = getStr($("#sele_id").val(), '.')
 		var brand = getStr($("#sele_id2").val(), '.')
 		var supplier = getStr($("#sele_id3").val(), '.')
 		var origin = $("#origin").val()
 		var fare = $("#fare").val()
-		//---------------------发布商品-----------------------------------
+		var id = getQueryString("goodsID")
+		//---------------------修改商品-----------------------------------
 		$.ajax({
 			type: "post",
 			headers: {
 				"code": $.cookie("code"),
 				"token": $.cookie("token")
 			},
-			url: urly("admin/publish.json"),
+			url: urly("admin/bjpEdit.json"),
 			data: JSON.stringify({
+				id: id,
 				name: name,
 				type: type,
 				brand: brand,
@@ -196,10 +99,10 @@ $(document).ready(function() {
 			dataType: "json",
 			contentType: "application/json;charset=utf-8", //转换成字符串形式发送
 			success: function(data) {
-				console.log(data)
+				//console.log(data)
 				switch(JSON.stringify(data.code)) {
 					case '"A00000"':
-						alert("发布成功")
+						alert("修改成功")
 						break;
 					default:
 						alert(data.msg)
@@ -216,10 +119,9 @@ $(document).ready(function() {
 			}
 		});
 	});
-
 })
 
-//--------------------------------上传图片阿里百川-------------------------------------------
+//--------------------------------上传图片阿里百川---------------------------
 function upfile(e) {
 	e = e || window.event;
 	var uploader = uploadJSSDK;
@@ -259,8 +161,7 @@ function upfile(e) {
 		});
 	}
 }
-
-//--------------------------------上传规格图片-------------------------------------------
+//--------------------------------上传规格图片-------------------------------
 function upfile2(e) {
 	e = e || window.event;
 	var uploader = uploadJSSDK;
@@ -300,22 +201,20 @@ function upfile2(e) {
 		});
 	}
 }
-//---------------------删除---------------------------------	
+//-------------------------------------删除---------------------------------	
 function delete_img(e) {
 	$(e.target).parent().remove()
 }
-//---------------------删除2---------------------------------	
+//-------------------------------------删除2--------------------------------	
 function delete_img2(e) {
-
 	var $imgx = e.target.previousElementSibling.previousElementSibling.previousElementSibling
 	var $file = e.target.previousElementSibling.previousElementSibling
 	//	console.log(e.target.previousElementSibling.previousElementSibling)
 	$($imgx).attr("src", "")
 	$($file).css("display", "block")
 	$(e.target).css("display", "none")
-
 }
-//--------------------增加规格-------------------------------------
+//-----------------------------------增加规格--------------------------------
 function add_norms(e) {
 	var $norms = e.target.parentNode
 	//	console.log($norms)
@@ -359,7 +258,7 @@ function add_norms(e) {
 		'</div>')
 	$($norms).append($table);
 }
-//----------------------确认规格------------------------------------------------
+//-----------------------------------确认规格--------------------------------
 function btn_norms(e) {
 	e = e || window.event;
 	var xx = e.target.parentNode.parentNode.parentNode.parentNode
@@ -368,7 +267,7 @@ function btn_norms(e) {
 	var money = $(xx).find(".g_money").val()
 	var price = $(xx).find(".g_price").val()
 	var stock = $(xx).find(".g_stock").val()
-	console.log(typeof money)
+	//console.log(typeof money)
 	if(avatar == '') {
 		alert("请上传规格图片")
 	} else {
@@ -397,17 +296,16 @@ function btn_norms(e) {
 	}
 
 }
-//-------------------------修改规格----------------------------------------------
+//-----------------------------------修改规格--------------------------------
 function reva_norms(e) {
 	var xx = e.target.parentNode.parentNode.parentNode.parentNode
-
 	$(xx).find("input").css("border", "1px solid #000000")
 	$(xx).find("input").attr('disabled', false)
 	$(xx).find("a").css("display", "block")
 	$(e.target.previousElementSibling).css("display", "block")
 	$(e.target).css("display", "none")
 }
-//--------------------------------生成对象类型--------------------------------------
+//---------------------------------生成对象类型------------------------------
 function object_norms(avatar, name, money, price, stock, e) {
 	e = e || window.event;
 	var obj = {
@@ -422,4 +320,187 @@ function object_norms(avatar, name, money, price, stock, e) {
 	var g_object = e.target.nextElementSibling.nextElementSibling
 	$(g_object).val(JSON.stringify(obj))
 	//console.log($(g_object).val())
+} //---------------------------渲染数据----------------------------------------------
+function bjpDetail(id) {
+	$.ajax({
+		type: "get",
+		headers: {
+			"code": $.cookie("code"),
+			"token": $.cookie("token")
+		},
+		url: urly("admin/bjpDetail.json"),
+		data: {
+			id: id
+		},
+		async: true,
+		dataType: "json",
+		success: function(data) {
+			console.log(data)
+			switch(JSON.stringify(data.code)) {
+				case '"A00000"':
+
+					$("#inputName").val(data.data.title) //标题
+					$("#origin").val(data.data.origin) //发货地
+
+					var $select = ("<option >" + data.data.supplier + "." + data.data.feature + "</option>")
+					$("#sele_id3").append($select) //供货商名
+
+					var $select = ("<option >" + data.data.brand + "." + data.data.brandName + "</option>")
+					$("#sele_id2").append($select) //商品品牌
+
+					var $select = ("<option >" + data.data.type + "." + data.data.typeName + "</option>")
+					$("#sele_id").append($select) //商品种类
+
+					var jsondata1 = data.data.formats
+					//console.log(JSON.stringify(jsondata1))
+					$("#tbody1").setTemplateElement("template");
+					$("#tbody1").processTemplate(jsondata1); //规格参数
+					//console.log($(".g_object").val())
+
+					var jsondata2 = data.data.banners
+					//console.log(jsondata2)
+					$("#banner").setTemplateElement("template2");
+					$("#banner").processTemplate(jsondata2); //banner图
+
+					var jsondata3 = data.data.details
+					//console.log(jsondata3)
+					$("#banner2").setTemplateElement("template3");
+					$("#banner2").processTemplate(jsondata3); //banner图
+
+					break;
+				default:
+					alert(data.msg)
+			}
+		},
+		error: function(XmlHttpRequest, textStatus, errorThrown) {
+			console.log("请求失败" + XmlHttpRequest.responseText);
+			console.log("请求失败" + XMLHttpRequest.status);
+			console.log("请求失败" + XMLHttpRequest.readyState);
+			console.log("请求失败" + textStatus);
+			if(textStatus == "parsererror") {
+				window.location.href = "../login.html"
+			}
+		}
+	});
+}
+//---------------------------------获取供应商id------------------------------
+function gysid() {
+	$.ajax({
+		type: "get",
+		headers: {
+			"code": $.cookie("code"),
+			"token": $.cookie("token")
+		},
+		url: urly("admin/supplys.json"),
+		data: {
+			"start": 0,
+			"size": 100,
+			"state": 1
+		},
+		async: true,
+		dataType: "json",
+		success: function(data) {
+			//console.log(data)
+			switch(JSON.stringify(data.code)) {
+				case '"A00000"':
+					var opti
+					$.each(data.data.objs, function(index) {
+						var $select = ("<option >" + data.data.objs[index].id + "." + data.data.objs[index].feature + "</option>")
+						$("#sele_id3").append($select)
+					})
+					break;
+				default:
+					alert(data.msg)
+			}
+		},
+		error: function(XmlHttpRequest, textStatus, errorThrown) {
+			console.log("请求失败" + XmlHttpRequest.responseText);
+			console.log("请求失败" + XMLHttpRequest.status);
+			console.log("请求失败" + XMLHttpRequest.readyState);
+			console.log("请求失败" + textStatus);
+			if(textStatus == "parsererror") {
+				window.location.href = "../login.html"
+			}
+		}
+	});
+}
+//----------------------------------获取种类id-------------------------------
+function zlid() {
+	$.ajax({
+		type: "get",
+		headers: {
+			"code": $.cookie("code"),
+			"token": $.cookie("token")
+		},
+		url: urly("admin/kinds.json"),
+		data: {
+			"start": 0,
+			"size": 100,
+			"state": 1
+		},
+		async: true,
+		dataType: "json",
+		success: function(data) {
+			//console.log(data)
+			switch(JSON.stringify(data.code)) {
+				case '"A00000"':
+					$.each(data.data.objs, function(index) {
+						var $select = ("<option >" + data.data.objs[index].id + "." + data.data.objs[index].label + "</option>")
+						$("#sele_id").append($select)
+					})
+					break;
+				default:
+					alert(data.msg)
+			}
+		},
+		error: function(XmlHttpRequest, textStatus, errorThrown) {
+			console.log("请求失败" + XmlHttpRequest.responseText);
+			console.log("请求失败" + XMLHttpRequest.status);
+			console.log("请求失败" + XMLHttpRequest.readyState);
+			console.log("请求失败" + textStatus);
+			if(textStatus == "parsererror") {
+				window.location.href = "../login.html"
+			}
+		}
+	});
+}
+//----------------------------------获取品牌id-------------------------------
+function ppid() {
+	$.ajax({
+		type: "get",
+		headers: {
+			"code": $.cookie("code"),
+			"token": $.cookie("token")
+		},
+		url: urly("admin/brands.json"),
+		data: {
+			"start": 0,
+			"size": 100,
+			"state": 1
+		},
+		async: true,
+		dataType: "json",
+		success: function(data) {
+			//console.log(data)
+			switch(JSON.stringify(data.code)) {
+				case '"A00000"':
+					$.each(data.data.objs, function(index) {
+						var $select = ("<option >" + data.data.objs[index].id + "." + data.data.objs[index].label + "</option>")
+						$("#sele_id2").append($select)
+					})
+					break;
+				default:
+					alert(data.msg)
+			}
+		},
+		error: function(XmlHttpRequest, textStatus, errorThrown) {
+			console.log("请求失败" + XmlHttpRequest.responseText);
+			console.log("请求失败" + XMLHttpRequest.status);
+			console.log("请求失败" + XMLHttpRequest.readyState);
+			console.log("请求失败" + textStatus);
+			if(textStatus == "parsererror") {
+				window.location.href = "../login.html"
+			}
+		}
+	});
 }

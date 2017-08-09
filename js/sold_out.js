@@ -1,46 +1,32 @@
-$(document).ready(function() {
-	refunds()
-	paging()
-	//-----------------退款分类切换事件--------------------------------------------
-	$(".nav-tabs li").each(function() {
-		var index = $(this).index();
-		$(this).click(function() {
-			//						alert(index);
-			$(this).addClass("active").siblings().removeClass("active");
-			var type = state_str($(".sele1").val())
-			refunds(index,type)
-			paging(index,type)
-		})
-	})
-	//------------------------退款状态change事件---------------------------------------------------------
-	$(".sele1").on("change", function() {
-		$("#dishpageval").val(0)
-		$("#change").text(1)
-		var index;
-		//		$(".nav-tabs li").removeClass("active");
-		var type = state_str($(".sele1").val())
-		//遍历获取当前拥有class=active，的li标签的索引值，并保存
-		$(".nav-tabs li").each(function() {
-		    index = $(this).index();
-			if($(this).hasClass("active")==true){
-				localStorage.setItem("Index",index)
-			}
-		})
-		var state=JSON.parse(localStorage.getItem("Index"))
-		refunds(state, type)
-		paging(state, type)
-	})
-
-})
-//-----------------------------------------------点击跳转----------------------------------------
-function btn_href(id){
-	window.location.href="proceed_moneyback.html?goodsID=" +encodeURI(id);
+window.onload = function() {
+	var checkAll = document.getElementById('checkall');
+	var inputs = document.getElementsByTagName('input');
+	//console.log(inputs.length)
+	checkAll.onclick = function() {
+		for(var i = 0; i < inputs.length; i++) {
+			inputs[i].checked = this.checked;
+		}
+	};
 }
-//---------------------------------------------浏览退货订单--------------------------------------
-function refunds(state,type) {
+
+$(function() {
+	bjps()
+	orders_paging()
+	// 设置属性值
+	$("#delete").click(function() {
+		var fruit = [];
+
+		$("input:checkbox[name='fruit']:checked").each(function() {
+			return fruit.push($(this).val())
+		});
+		bjpShelve(fruit)
+	});
+})
+//---------------------------浏览全部----------------------------------------
+function bjps() {
 	$.ajax({
 		type: "get",
-		url: urly("admin/refunds.json"),
+		url: urly("admin/bjps.json"),
 		async: true,
 		headers: {
 			"code": $.cookie("code"),
@@ -49,16 +35,18 @@ function refunds(state,type) {
 		dataType: "json",
 		data: {
 			"start": 0,
-			"size": 10,
-			"state": state,
-			"type": type
+			'type':0, 
+			"size": 10
 		},
 		success: function(data) {
 			console.log(data)
 			var jsondata = data.data.objs;
+			$("#collect").html(data.data.total)
+			$("#turnover").html(data.data.turnover)
+			$("#orderCount").html(data.data.count)
+			// console.log(jsondata)
 			$("#tbody1").setTemplateElement("template");
 			$("#tbody1").processTemplate(jsondata);
-			//
 			//-----------------分页状态-----------------------
 			$("#PrevPage").attr("disabled", true);
 			$("#NextPage").attr("disabled", true);
@@ -80,44 +68,27 @@ function refunds(state,type) {
 		}
 	});
 }
-//---------------------------------------------状态类型处理--------------------------------------
-function state_str(str) {
-	if(str == "全部") {
-		return 0
-	} else if(str == "退款待处理") {
-		return 1
-	} else if(str == "已拒绝退款") {
-		return 2
-	} else if(str == "待卖家发货") {
-		return 3
-	} else if(str == "待商家收货") {
-		return 4
-	} else if(str == "已取消退款") {
-		return 5
-	} else if(str == "退款成功") {
-		return 6
-	}
-}
-//-------------------------------------------------分页------------------------------------------
-function paging(state, type) {
+//------------------ -------全部列表分页---------------------------------------
+function orders_paging() {
+	$("#dishpageval").val(0)
+	$("#change").text(1)
+
 	if($("#dishpageval").val() == 0) {
+		//	      			console.log("0")
 		$("#PrevPage").attr("disabled", true);
 	} //菜品列表分页相关
 	$("#NextPage").unbind().click(function() {
-		//alert("111")
-		//	$("#tbody1").empty($tr)
+		//		console.log(state)
 		$("#change").text(1)
 		$("#PrevPage").removeAttr("disabled");
 		var dishstart = ($("#dishpageval").val() - 0) + 10;
 		$.ajax({
 			type: "get",
-			url: urly("admin/refunds.json"),
+			url: urly("admin/bjps.json"),
 			data: {
-
 				"start": dishstart,
-				"size": 10,
-				"state": state,
-				"type": type
+				'type':0, 
+				"size": 10
 			},
 			dataType: "json",
 			headers: {
@@ -125,7 +96,7 @@ function paging(state, type) {
 				"token": $.cookie("token")
 			},
 			success: function(data) {
-				console.log(data)
+							console.log(data)
 				var jsondata = data.data.objs;
 
 				$("#tbody1").setTemplateElement("template");
@@ -158,13 +129,12 @@ function paging(state, type) {
 		}
 		$.ajax({
 			type: "get",
-			url: urly("admin/refunds.json"),
+			url: urly("admin/bjps.json"),
 			data: {
 
 				"start": dishstart,
-				"size": 10,
-				"state": state,
-				"type": type
+				'type':0, 
+				"size": 10
 			},
 			dataType: "json",
 			headers: {
@@ -194,5 +164,56 @@ function paging(state, type) {
 			}
 		});
 	}); //上一页
+} 
+//----------------------------上架-------------------------------------------
+function bjpShelve(new_arr) {
+	console.log(new_arr)
+	for(var i = 0; i < new_arr.length; i++) {
+		$.ajax({
+			type: "get",
+			url: urly("admin/bjpShelve.json"),
+			async: true,
+			headers: {
+				"code": $.cookie("code"),
+				"token": $.cookie("token")
+			},
+			dataType: "json",
+			data: {
+				id: new_arr[i]
+			},
+			success: function(data) {
+				switch(JSON.stringify(data.code)) {
+					case '"A00000"':
+						swal({
+								title: "确认上架?",
+								text: "",
+								type: "warning",
+								showCancelButton: true,
+								confirmButtonColor: "#DD6B55",
+								confirmButtonText: "Yes",
+								closeOnConfirm: false
+							},
+							function() {
+								window.location.reload()
+							});
+						break;
+					default:
+						alert(data.msg)
+				}
+			},
+			error: function(XmlHttpRequest, textStatus, errorThrown) {
+				console.log("请求失败" + XmlHttpRequest.responseText);
+				console.log("请求失败" + XMLHttpRequest.status);
+				console.log("请求失败" + XMLHttpRequest.readyState);
+				console.log("请求失败" + textStatus);
+				if(textStatus == "parsererror") {
+					window.location.href = "../login.html"
+				}
+			}
+		});
+	}
 
+}//------------------------------------------------点击跳转-------------------
+function btn_href(id){
+	window.location.href="edit_commodity.html?goodsID=" +encodeURI(id);
 }

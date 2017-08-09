@@ -11,8 +11,11 @@
 		<script src="../js/lib/jQuery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/lib/jQuery/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery-time.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/lib/jQuery/jquery-jtemplates.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/datails.js" type="text/javascript" charset="utf-8"></script>
+		
 		<style type="text/css">
 			.col-md-12.buyer {
 				background: #ffffff;
@@ -56,6 +59,9 @@
 			.order_total {
 				text-align: right;
 			}
+			.color_red{
+				color: #337ab7;
+			}
 		</style>
 	</head>
 
@@ -80,6 +86,9 @@
 						<ul class="dropdown-menu">
 							<li>
 								<a id="nav_a" href="commodity.html">出售中的商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="sold_out.html">下架的商品</a>
 							</li>
 							<li>
 								<a id="nav_a" href="send_commodity.html">发布商品</a>
@@ -118,64 +127,85 @@
 			</div>
 
 		</div>
+		<!--订单信息模版-->
 		<textarea id="template2" style="display:none">
 			{#template MAIN}
-			<div class="buyer_order">
-							<h5>订单信息：</h5>
-
-							<span class="order_span">订单编号：<span>{$T.sn}</span></span>
-							<span class="order_span">创建时间：<span>{$T.createTime}</span></span>
-							<table class="table table-bordered">
-
-								<thead>
-									<tr>
-										<th>宝贝</th>
-										<th>宝贝属性</th>
-										<th>状态</th>
-										<th>单价</th>
-										<th>数量</th>
-										<th>优惠</th>
-										<th>商品总价</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<img src="{$T.img}" />
-											<span style='color: #1E88E5;'>{$T.title}</span>
-										</td>
-										<td>产品规格：{$T.label}</td>
-										<td>{$T.state}</td>
-										<td>{to_Fixed($T.money)}</td>
-										<td>{$T.num}</td>
-										<td>{to_Fixed($T.amount)}</td>
-										<td>{to_Fixed($T.num*$T.money)}（快递：{to_Fixed($T.fare)})</td>
-									</tr>
-
-								</tbody>
-
-							</table>
-							<p class="order_total">实付款：<b style='color: red;'>{to_Fixed($T.num*$T.money)}</b>元</p>
-						</div>
-						<div class="buyer_logistics">
-							<h5>收货和物流信息</h5>
-							<p>收货地址：<span class="logistics_1">{$T.name}，{$T.mobile} {$T.address}</span></p>
-							<p>运送方式：<span class="logistics_2">快递</span></p>
-							<p>物流公司名称：<span class="logistics_3">{xs_null($T.express)}</span></p>
-							<p>运单号：<span class="logistics_4">{$T.sn}</span></p>
-							<p>买家留言：<span class="logistics_5">{xs_null($T.remark)}</span></p>
-						</div>
-			 
+			<h5>订单信息</h5>
+				<p class="order_span">订单编号：<span class="color_red">{$T.sn}</span></p>
+				<p class="order_span">创建时间：<span class="color_red">{formatDate($T.createTime)}</span></p>
+				<p class="order_span">状态：<span class="color_red">{state($T.state)}</span></p>
+				 <br />
+			<h5>订单列表</h5>
+				<div class="buyer_order">
+					
+					
+					
+				</div>
+				<p class="order_total">实付款：<b style='color: red;'>{to_Fixed($T.price)}</b>元</p>
+				<div class="buyer_logistics">
+					<h5>收货和物流信息</h5>
+					<p>收货地址：<span class="logistics_1 color_red">{$T.name}，{$T.mobile} {$T.address}</span></p>
+					<p>运送方式：<span class="logistics_2 color_red">快递</span></p>
+					<p>物流公司名称：<span class="logistics_3 color_red">{xs_null($T.express)}</span></p>
+					<p>运单号：<span class="logistics_4 color_red">{xs_null($T.code)}</span></p>
+					<p>买家留言：<span class="logistics_5 color_red">{xs_null($T.remark)}</span></p>
+				</div>
 			{#/template MAIN}
 		</textarea>
+		<!--订单列表模版-->
+		<textarea id="template" style="display:none">
+			{#template MAIN}
+			   {#foreach $T as entry}
+			       <span>供应商：
+			      	{$T.entry.feature}
+			       </span>
+			        <table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>宝贝</th>
+								<th>宝贝属性</th>
+								<th>单价</th>
+								<th>数量</th>
+								<!--<th>优惠</th>-->
+								<th>商品总价</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#if $T.entry.list}{#include entry root=$T.entry.list}{#/if}
+						</tbody>
+					</table>
+			   {#/for}
+			{#/template MAIN}
+			
+			{#template entry}
+			    {#foreach $T as entry}
+			       <tr>
+						<td style="width:300px;">
+							<img src="{$T.img}" />
+							<span style='color: #1E88E5;'>{$T.entry.title}</span>
+						</td>
+						<td>产品规格：{$T.entry.label}</td>
+						
+						<td>{to_Fixed($T.entry.money)}</td>
+						<td>{$T.entry.num}</td>
+						<!--<td>{to_Fixed($T.entry.amount)}</td>-->
+						<td>{to_Fixed($T.entry.num*$T.entry.money)}（快递：{to_Fixed($T.entry.fare)})</td>
+					</tr>
+			     
+			    {#/for}   
+			{#/template entry}
+			
+			
+		</textarea>
+		
 	</body>
 
 </html>
 <script type="text/javascript">
-	var str = localStorage.getItem('click_Storage');
-	var arr = JSON.parse(str);
-	console.log(arr)
-	$(".buyer").setTemplateElement("template2");
-	$(".buyer").processTemplate(arr);
+//	var str = localStorage.getItem('click_Storage');
+//	var arr = JSON.parse(str);
+//	console.log(arr)
+//	$(".buyer").setTemplateElement("template2");
+//	$(".buyer").processTemplate(arr);
 
 </script>

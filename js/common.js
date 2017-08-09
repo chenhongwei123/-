@@ -40,12 +40,13 @@ function urly(url) {
 //---------------------时间戳-------------------------------------------
 
 function formatDate(data) {
-	//			console.log(data)
+   // console.log(data)
 	if(data == null || data == "null") {
 		//				console.log(data)
 		return "无"
 	} else {
 		return $.myTime.UnixToDate(data, true, 8);
+		
 	}
 }
 
@@ -94,7 +95,6 @@ function xs_null(data) {
 		return data
 	}
 }
-
 //-------------------字符串处理------------------------
 function getStr(string, str) {
 	var str_before = string.split(str)[0];
@@ -250,7 +250,7 @@ function T_state(data) {
 
 //----------------------------退单是否发货转换-------------------------------------------------
 function shipped(data) {
-	switch(e) {
+	switch(data) {
 		case 0:
 			return '未发货'
 			break;

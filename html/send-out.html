@@ -43,7 +43,7 @@
 			}
 			
 			.select {
-				height: 150px;
+			/*	height: 150px;*/
 				overflow: auto;
 				/* background-color: #fff; */
 				line-height: 50px;
@@ -95,6 +95,9 @@
 								<a id="nav_a" href="commodity.html">出售中的商品</a>
 							</li>
 							<li>
+								<a id="nav_a" href="sold_out.html">下架的商品</a>
+							</li>
+							<li>
 								<a id="nav_a" href="send_commodity.html">发布商品</a>
 							</li>
 						</ul>
@@ -124,7 +127,7 @@
 						<h4>寄件人地址</h4>
 						<div class="sennd_site">
 
-						<!--	<button type="button" class="btn btn-default">使用新地址</button>-->
+							<!--	<button type="button" class="btn btn-default">使用新地址</button>-->
 							<div class="select">
 								<input type="text" class="form-control address" value="欣欣向荣   18953756262    浙江省  杭州市 下城区 朝晖街道  中山花园209号风荷苑">
 								<p style="color: red;">（注：可以直接修改为其他地址）</p>
@@ -167,11 +170,11 @@
 											<option>宅急送</option>
 											<option>速尔</option>
 											<option>邮政</option>
-											
+
 										</select>
 									</div>
 								</div>
-								<button type="button" class="btn btn-default affirm send-out" >确认发货</button>
+								<button type="button" class="btn btn-default affirm send-out">确认发货</button>
 							</form>
 
 						</div>
@@ -183,7 +186,7 @@
 
 		</div>
 		<!--模版数据-->
-		<textarea id="template" style="display:none">
+		<!--<textarea id="template" style="display:none">
 			{#template MAIN}
 			      <table class="table table-bordered">
 					<h4>订单编号：{xs_null($T.code)}</h4>
@@ -216,7 +219,50 @@
 							<p>{xs_null($T.address)}，{xs_null($T.name)} ，{xs_null($T.mobile)} </p>
 						</div>
 			{#/template MAIN}
-		</textarea>
+		</textarea>-->
+
+		<!--订单列表模版-->
+		<textarea id="template" style="display:none">
+			{#template MAIN}
+			   {#foreach $T as entry}
+			       <span>供应商：
+			      	{$T.entry.feature}
+			       </span>
+			        <table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>宝贝</th>
+								<th>宝贝属性</th>
+								<th>单价</th>
+								<th>数量</th>
+								<!--<th>优惠</th>-->
+								<th>商品总价</th>
+							</tr>
+						</thead>
+						<tbody>
+							{#if $T.entry.list}{#include entry root=$T.entry.list}{#/if}
+						</tbody>
+					</table>
+			   {#/for}
+			{#/template MAIN}
+			
+			{#template entry}
+			    {#foreach $T as entry}
+			       <tr>
+						<td style="width:300px;">
+							<img src="{$T.img}" />
+							<span style='color: #1E88E5;'>{$T.entry.title}</span>
+						</td>
+						<td>产品规格：{$T.entry.label}</td>
+						
+						<td>{to_Fixed($T.entry.money)}</td>
+						<td>{$T.entry.num}</td>
+						<!--<td>{to_Fixed($T.entry.amount)}</td>-->
+						<td>{to_Fixed($T.entry.num*$T.entry.money)}（快递：{to_Fixed($T.entry.fare)})</td>
+					</tr>
+			     
+			    {#/for}   
+			{#/template entry}
 	</body>
 
 </html>
