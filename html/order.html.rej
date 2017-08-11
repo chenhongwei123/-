@@ -1,0 +1,10 @@
+diff a/html/order.html b/html/order.html	(rejected hunks)
+@@ -205,7 +205,7 @@
+ 						<td>{formatDate($T.entry.createTime)}</td>
+ 						<td>{state_o($T.entry.state)}</td>
+ 						
+-						   {#if $T.entry.state==1}<td><a href="send-out.html" class="btn">发货</a></td> 
++						   {#if $T.entry.state==1}<td><a onclick="click_Storage(event)" href="send-out.html" class="btn">发货</a></td> 
+ 							   {#elseif $T.entry.state==3} <td></td>  
+ 							   {#else} <td></td>  
+ 						   {#/if}  

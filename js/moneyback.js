@@ -3,13 +3,16 @@ $(document).ready(function() {
 	paging()
 	//-----------------退款分类切换事件--------------------------------------------
 	$(".nav-tabs li").each(function() {
+
 		var index = $(this).index();
 		$(this).click(function() {
+			$("#dishpageval").val(0)
+			$("#change").text(1)
 			//						alert(index);
 			$(this).addClass("active").siblings().removeClass("active");
 			var type = state_str($(".sele1").val())
-			refunds(index,type)
-			paging(index,type)
+			refunds(index, type)
+			paging(index, type)
 		})
 	})
 	//------------------------退款状态change事件---------------------------------------------------------
@@ -21,23 +24,23 @@ $(document).ready(function() {
 		var type = state_str($(".sele1").val())
 		//遍历获取当前拥有class=active，的li标签的索引值，并保存
 		$(".nav-tabs li").each(function() {
-		    index = $(this).index();
-			if($(this).hasClass("active")==true){
-				localStorage.setItem("Index",index)
+			index = $(this).index();
+			if($(this).hasClass("active") == true) {
+				localStorage.setItem("Index", index)
 			}
 		})
-		var state=JSON.parse(localStorage.getItem("Index"))
+		var state = JSON.parse(localStorage.getItem("Index"))
 		refunds(state, type)
 		paging(state, type)
 	})
 
 })
 //-----------------------------------------------点击跳转----------------------------------------
-function btn_href(id){
-	window.location.href="proceed_moneyback.html?goodsID=" +encodeURI(id);
+function btn_href(id) {
+	window.location.href = "proceed_moneyback.html?goodsID=" + encodeURI(id);
 }
 //---------------------------------------------浏览退货订单--------------------------------------
-function refunds(state,type) {
+function refunds(state, type) {
 	$.ajax({
 		type: "get",
 		url: urly("admin/refunds.json"),

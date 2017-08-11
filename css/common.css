@@ -129,13 +129,14 @@ a.btn:hover {
 
 #PrevPage,
 #NextPage {
+	background-color: white;
 	float: left;
 	width: 50%;
 	text-align: center;
 	border: 0;
 	line-height: 46px;
 	font-size: 16px;
-	color: #008000;
+	color: #337ab7;
 	cursor: pointer;
 	font-weight: 700;
 }
@@ -172,5 +173,5 @@ a.btn:hover {
 	position: relative;
 	top: -30px;
 	left: 48%;
-	width: 50px;
+	width: 70px;
 }

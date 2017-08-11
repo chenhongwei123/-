@@ -19,7 +19,7 @@
 }
 
 .cms-jumbotron {
-	background: #000000;
+	background: #337ab7;
 	color: white;
 	font-family: NotoSans-Regular;
 	margin-bottom: 0px;
@@ -52,8 +52,8 @@
 .cms-login {
 	margin-top: 5%;
 	width: 150px;
-	background: #000000;
-	border: 1px solid #000000;
+	background: #337ab7;
+	border: 1px solid #337ab7;
 	transition: all .3s;
 	-webkit-transition: all .3s;
 	box-shadow: 0px 3px 10px #B3B3B3;
