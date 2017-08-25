@@ -356,7 +356,7 @@ function bjpDetail(id) {
 					$("#tbody1").setTemplateElement("template");
 					$("#tbody1").processTemplate(jsondata1); //规格参数
 					//console.log($(".g_object").val())
-
+					
 					var jsondata2 = data.data.banners
 					//console.log(jsondata2)
 					$("#banner").setTemplateElement("template2");

@@ -28,25 +28,24 @@ $(document).ready(function() {
 //--------------------环境转换----------------------------
 function urly(url) {
 	//开发环境
-	var str = "http://bjpsc.honganjk.com/" + url
-	return str
+	//	var str = "http://bjpsc.honganjk.com/" + url
+	//	return str
 
 	//生产环境
-	//		var str = "http://admin.honganjk.com/" + url
-	//		return str
-
+	var str = "http://bjpad.honganjk.com/" + url
+	return str
 }
 
 //---------------------时间戳-------------------------------------------
 
 function formatDate(data) {
-   // console.log(data)
+	// console.log(data)
 	if(data == null || data == "null") {
 		//				console.log(data)
 		return "无"
 	} else {
 		return $.myTime.UnixToDate(data, true, 8);
-		
+
 	}
 }
 
@@ -235,7 +234,7 @@ function state(e) {
 			break;
 		case 25:
 			return '退货退款中'
-			break;	
+			break;
 	};
 }
 
@@ -257,14 +256,13 @@ function shipped(data) {
 		case 1:
 			return '已发货'
 			break;
-		
+
 		default:
 			return '-'
 			break;
 
 	};
 }
-
 
 //----------------------------买家发货转换-------------------------------------------------
 function Tm_state(e) {
