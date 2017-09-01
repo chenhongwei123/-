@@ -33,7 +33,8 @@ $(document).ready(function() {
 		url: urly("admin/kinds.json"),
 		data: {
 			"start": 0,
-			"size": 100
+			"size": 100,
+			"state":1
 		},
 		async: true,
 		dataType: "json",
@@ -70,7 +71,8 @@ $(document).ready(function() {
 		url: urly("admin/brands.json"),
 		data: {
 			"start": 0,
-			"size": 100
+			"size": 100,
+			"state":1
 		},
 		async: true,
 		dataType: "json",
@@ -108,7 +110,8 @@ $(document).ready(function() {
 		url: urly("admin/supplys.json"),
 		data: {
 			"start": 0,
-			"size": 100
+			"size": 100,
+			"state":1
 		},
 		async: true,
 		dataType: "json",

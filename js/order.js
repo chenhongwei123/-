@@ -97,7 +97,6 @@ function orders_paging(state) {
 			type: "get",
 			url: urly("admin/orders.json"),
 			data: {
-
 				"start": dishstart,
 				"size": 10,
 				"state": state
