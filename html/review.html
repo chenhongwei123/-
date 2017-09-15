@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>模拟评论</title>
+		<link rel="stylesheet" type="text/css" href="../css/PCreset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/lib/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+		<script src="../js/lib/jQuery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://cdn.bootcss.com/angular.js/1.3.8/angular.min.js"></script>
+		<script src="../js/lib/bootstrap/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/upfile.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery-jtemplates.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/lib/jQuery/jquery.cookie.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/review.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.control-label {
+				font-size: 18px;
+			}
+			
+			.users_label {
+				width: 30%;
+			}
+			
+			.name_label {
+				width: 12%;
+				margin-top: 8px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+
+			<div class="col-sm-3 col-md-2 sidebar">
+				<h3>保健品后台管理</h3>
+				<ul class="nav nav-pills  nav-stacked" id="nav">
+					<li role="presentation">
+						<a href="order.html">订单管理</a>
+					</li>
+
+					<li role="presentation" class="active">
+
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							商品管理 <span class="caret "></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a id="nav_a" href="commodity.html">出售中的商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="sold_out.html">下架的商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="send_commodity.html">发布商品</a>
+							</li>
+							<li>
+								<a id="nav_a" href="banner.html">首页 Banner</a>
+							</li>
+						</ul>
+					</li>
+					<li role="presentation">
+						<a href="moneyback.html">退货管理</a>
+					</li>
+					<li role="presentation">
+						<a href="javascript:void(0)" class="logout">退出系统</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 main-console box">
+					<!--面包屑导航-->
+					<ol class="breadcrumb">
+						<li>
+							<a href="commodity.html">订单管理</a>
+						</li>
+						<li class="active">模拟评论</li>
+					</ol>
+
+					<form class="form-horizontal">
+						<br /><br />
+						<h4 class="title" style="text-align: center;color: #0059BC;"></h4>
+						<br /><br />
+						<!--选择评论的用户-->
+						<div class="com-md-12">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">选择评论的用户：</label>
+								<div class="col-sm-6 users_id" style="height: 150px; overflow: auto;">
+
+								</div>
+								<input type="hidden" class="checkbox_users" value="">
+							</div>
+						</div>
+                        <br /><br />
+						<!--评分-->
+						<div class="com-md-12">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">评分：</label>
+								<div class="col-sm-6">
+									<input type="hidden" name="score" class="score" />
+									<label class="name_label"><input name="score" type="radio" value="1" />1分 </label>
+									<label class="name_label"><input name="score" type="radio" value="2" />2分 </label>
+									<label class="name_label"><input name="score" type="radio" value="3" />3分 </label>
+									<label class="name_label"><input name="score" type="radio" value="4" />4分</label>
+									<label class="name_label"><input name="score" type="radio" value="5" checked="checked" />5分 </label>
+								</div>
+							</div>
+						</div>
+						<br /><br />
+						<!--评论内容-->
+						<div class="com-md-12">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">评论内容：</label>
+								<div class="col-sm-6">
+									<textarea style="padding: 20px;" name="content" rows="5" cols="30"></textarea>
+								</div>
+							</div>
+						</div>
+						
+					</form>
+					<button class="btn btn btn-primary " onclick="affirm()">发布评论</button>
+				</div>
+			</div>
+		</div>
+		<!--规格模版-->
+		<textarea id="template" style="display:none">
+			{#template MAIN}
+			    {#foreach $T as entry}
+			    <label class="users_label">&nbsp; &nbsp;&nbsp;<input name="usersId" type="checkbox" value="{$T.entry.id}">{$T.entry.name} </label>
+			    
+				{#/for}   
+			{#/template MAIN} 
+			</textarea>
+
+		
+	</body>
+
+</html>
+<script type="text/javascript">
+</script>

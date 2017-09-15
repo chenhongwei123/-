@@ -91,11 +91,11 @@ $(document).ready(function() {
 //--------------------登录环境转换----------------------------
 function urlx(url) {
 	//开发环境
-	var str = "http://admindev.honganjk.com/" + url
-	return str
+//	var str = "http://admindev.honganjk.com/" + url
+//	return str
 
 //	//生产环境
-//		var str = "http://admin.honganjk.com/" + url
-//		return str
+		var str = "http://admin.honganjk.com/" + url
+		return str
 
 }

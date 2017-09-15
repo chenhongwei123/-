@@ -26,7 +26,7 @@ $(document).ready(function() {
 	$("#searchOrder").on("click", function() {
 		var keyword = $(".wd1").val()
 		orders('', keyword)
-		orders_paging()
+		orders_paging('', keyword)
 	})
 })
 
@@ -48,7 +48,9 @@ function orders(state, keyword) {
 			"keyword": keyword
 		},
 		success: function(data) {
-			console.log(data)
+			 console.log(data)
+			 $("#all_change").text(Math.ceil((data.data.total)/10))         //总共页数
+			 
 			var jsondata = data.data.objs;
 			$("#collect").html(data.data.total)
 			$("#turnover").html(data.data.turnover)
@@ -79,7 +81,7 @@ function orders(state, keyword) {
 	});
 }
 //---------------------------------------------------全部列表分页----------------------------------------------
-function orders_paging(state) {
+function orders_paging(state,keyword) {
 
 	$("#dishpageval").val(0)
 	$("#change").text(1)
@@ -99,7 +101,8 @@ function orders_paging(state) {
 			data: {
 				"start": dishstart,
 				"size": 10,
-				"state": state
+				"state": state,
+				"keyword": keyword
 			},
 			dataType: "json",
 			headers: {
@@ -107,15 +110,16 @@ function orders_paging(state) {
 				"token": $.cookie("token")
 			},
 			success: function(data) {
-				//				console.log(data)
+				console.log(data)
 				var jsondata = data.data.objs;
 
 				$("#tbody1").setTemplateElement("template");
 				$("#tbody1").processTemplate(jsondata);
 
 				$("#dishpageval").val(dishstart);
-				$("#change").text($("#dishpageval").val() / 10 + 1)
-
+				$("#change").text($("#dishpageval").val() / 10 + 1) //当前页
+//              $("#all_change").text((data.data.total)/10)         //总共页数
+                
 				if(JSON.stringify(data.data.total) - 10 <= $("#dishpageval").val()) {
 					$("#NextPage").attr('disabled', true);
 				}
@@ -142,10 +146,10 @@ function orders_paging(state) {
 			type: "get",
 			url: urly("admin/orders.json"),
 			data: {
-
 				"start": dishstart,
 				"size": 10,
-				"state": state
+				"state": state,
+				"keyword": keyword
 			},
 			dataType: "json",
 			headers: {

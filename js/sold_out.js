@@ -40,6 +40,9 @@ function bjps() {
 		},
 		success: function(data) {
 			console.log(data)
+			
+			$("#all_change").text(Math.ceil((data.data.total)/10))         //总共页数
+			 
 			var jsondata = data.data.objs;
 			$("#collect").html(data.data.total)
 			$("#turnover").html(data.data.turnover)
@@ -216,4 +219,13 @@ function bjpShelve(new_arr) {
 }//------------------------------------------------点击跳转-------------------
 function btn_href(id){
 	window.location.href="edit_commodity.html?goodsID=" +encodeURI(id);
+}
+//------------------------------------------------点击跳转（修改销量）-------------------
+function btn_href2(id){
+	window.location.href="edit_sales.html?goodsID=" +encodeURI(id);
+}
+
+//------------------------------------------------点击跳转（写评论）-------------------
+function btn_href3(id){
+	window.location.href="review.html?goodsID=" +encodeURI(id);
 }

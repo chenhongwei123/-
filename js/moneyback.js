@@ -58,6 +58,8 @@ function refunds(state, type) {
 		},
 		success: function(data) {
 			console.log(data)
+			
+			 $("#all_change").text(Math.ceil((data.data.total)/10))         //总共页数
 			var jsondata = data.data.objs;
 			$("#tbody1").setTemplateElement("template");
 			$("#tbody1").processTemplate(jsondata);

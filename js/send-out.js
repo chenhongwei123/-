@@ -46,7 +46,8 @@ function dispose(id, express, code, address) {
 				case '"A00000"':
 					alert("发货成功")
 					//location.reload()
-					window.history.go(-1)
+//					window.history.go(-1)
+                    window.location.href='order.html'
 					break;
 				default:
 					alert("请求失败")

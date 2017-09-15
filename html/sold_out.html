@@ -24,7 +24,7 @@
 		<div class="container-fluid">
 
 			<div class="col-sm-3 col-md-2 sidebar">
-				<h3>保健品后台管理系统</h3>
+				<h3>保健品后台管理</h3>
 				<ul class="nav nav-pills  nav-stacked" id="nav">
 					<li role="presentation">
 						<a href="order.html">订单管理</a>
@@ -101,6 +101,8 @@
 							<span>第</span>
 							<b id="change">1</b>
 							<span>页</span>
+							<span>/</span>
+							<span> 共 <b id="all_change"></b> 页 </span>
 						</div>
 					</div>
 				</div>
@@ -121,7 +123,11 @@
 						<td>{$T.entry.stock}</td>
 						<td>{$T.entry.sales}</td>
 						<td>{formatDate($T.entry.time)}</td>
-						<td><a class="btn" onclick="btn_href({$T.entry.id})">编辑</a></td>
+						<td>
+							<a class="btn" onclick="btn_href({$T.entry.id})">编辑</a>
+							<a class="btn" onclick="btn_href2({$T.entry.id})">修改销量</a>
+							<a class="btn" onclick="btn_href3({$T.entry.id})">评论</a>
+						</td>
 						<!--<a onclick="click_Storage(event)" href="send-out.html" class="btn">发货</a>-->
 					</tr>
 			    

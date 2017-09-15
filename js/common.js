@@ -25,15 +25,26 @@ $(document).ready(function() {
 
 })
 
-//--------------------环境转换----------------------------
+//--------------------环境转换1----------------------------
 function urly(url) {
 	//开发环境
-		var str = "http://bjpsc.honganjk.com/" + url
-		return str
+//		var str = "http://bjpsc.honganjk.com/" + url
+//		return str
 
-//	//生产环境
-//	var str = "http://bjpad.honganjk.com/" + url
-//	return str
+	//生产环境
+	var str = "http://bjpad.honganjk.com/" + url
+	return str
+}
+
+//--------------------环境转换2----------------------------
+function urlz(url) {
+        //开发环境
+//		var str = "http://admindev.honganjk.com/" + url
+//		return str
+
+		//生产环境
+		var str = "http://admin.honganjk.com/" + url
+		return str
 }
 
 //---------------------时间戳-------------------------------------------
